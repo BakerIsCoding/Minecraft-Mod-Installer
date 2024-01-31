@@ -8,7 +8,7 @@ Go to the branch main and clone the project, then compile the project on netbean
 
 __Release__
 
-Go to releases and download the lastest version, or [click here](https://github.com/BakerIsCoding/FriendsVsFriends-SaveEditor/releases/latest)
+Go to releases and download the lastest version
 
 
 ## Features
