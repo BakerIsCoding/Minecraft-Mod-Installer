@@ -6,6 +6,7 @@ package com.baker.interfaces;
 
 import com.baker.Requests.RequestGet;
 import com.baker.simpleExceptions.SimpleException;
+import com.baker.utils.HardwareInfoGetter;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;

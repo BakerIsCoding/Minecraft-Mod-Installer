@@ -7,6 +7,7 @@ package com.baker.interfaces;
 import com.baker.Requests.RequestGet;
 import com.baker.Requests.RequestPost;
 import com.baker.simpleExceptions.SimpleException;
+import com.baker.utils.HardwareInfoGetter;
 import com.baker.utils.TypesChangers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,8 +21,7 @@ import org.json.JSONObject;
  * @author Baker
  */
 public class AllPanels extends javax.swing.JPanel {
-    
-     
+
     /**
      * Creates new form UserInfoPanel
      *
@@ -30,31 +30,34 @@ public class AllPanels extends javax.swing.JPanel {
      * @throws com.baker.simpleExceptions.SimpleException
      */
     public AllPanels() {
-        
+        HardwareInfoGetter hardware = new HardwareInfoGetter();
+
         initComponents();
+        //Set Text Area
+        pcInfoTextArea.setText(hardware.getSystemInfo());
+        pcInfoTextArea.setEditable(false);
+
         // Set size and location
         setSize(584, 578);
         setLocation(0, 0);
-        
-       
+
         try {
             userStatsPanel();
         } catch (SimpleException e) {
             System.out.println("error " + e.getMessage());
         }
-        
+
         System.out.println("Started!");
 
     }
 
- 
     private void userStatsPanel() throws SimpleException {
         userInfoWriteOnLabels();
-        
+
     }
 
     private void userInfoWriteOnLabels() throws SimpleException {
-       
+
     }
 
     /**
@@ -72,6 +75,10 @@ public class AllPanels extends javax.swing.JPanel {
         OtherTitle1 = new javax.swing.JLabel();
         matchEditor = new javax.swing.JPanel();
         MainTitle = new javax.swing.JLabel();
+        pcInfo = new javax.swing.JPanel();
+        ScrollPane = new javax.swing.JScrollPane();
+        pcInfoTextArea = new javax.swing.JTextArea();
+        MainTitle1 = new javax.swing.JLabel();
 
         AllPanels.setBackground(new java.awt.Color(62, 62, 62));
         AllPanels.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,6 +139,42 @@ public class AllPanels extends javax.swing.JPanel {
 
         AllPanels.addTab("panel2", matchEditor);
 
+        pcInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pcInfoax(evt);
+            }
+        });
+
+        pcInfoTextArea.setColumns(20);
+        pcInfoTextArea.setRows(5);
+        ScrollPane.setViewportView(pcInfoTextArea);
+
+        MainTitle1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        MainTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MainTitle1.setText("Pc Info");
+
+        javax.swing.GroupLayout pcInfoLayout = new javax.swing.GroupLayout(pcInfo);
+        pcInfo.setLayout(pcInfoLayout);
+        pcInfoLayout.setHorizontalGroup(
+            pcInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(MainTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+            .addGroup(pcInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ScrollPane)
+                .addContainerGap())
+        );
+        pcInfoLayout.setVerticalGroup(
+            pcInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pcInfoLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(MainTitle1)
+                .addGap(18, 18, 18)
+                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
+        AllPanels.addTab("Información del Pc", pcInfo);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,16 +193,21 @@ public class AllPanels extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_ax
 
-
-
+    private void pcInfoax(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pcInfoax
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pcInfoax
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.baker.tabbed.MaterialTabbed AllPanels;
     private javax.swing.JLabel MainTitle;
+    private javax.swing.JLabel MainTitle1;
     private javax.swing.JLabel OtherTitle1;
+    private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel matchEditor;
+    private javax.swing.JPanel pcInfo;
+    private javax.swing.JTextArea pcInfoTextArea;
     private javax.swing.JPanel userInfoPanel;
     // End of variables declaration//GEN-END:variables
 }
