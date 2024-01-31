@@ -15,9 +15,9 @@ Go to releases and download the lastest version, or [click here](https://github.
 TO DO
 
 ## Upcoming
-✅ Mod Installer Panel 
-✅ Shader Installer Panel  
-✅ Pc Specs Panel 
+✅ Mod Installer Panel
+✅ Shader Installer Panel
+✅ Pc Specs Panel
 ✅ About Panel
 
 
