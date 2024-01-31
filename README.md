@@ -16,8 +16,11 @@ TO DO
 
 ## Upcoming
 ✅ Mod Installer Panel
+
 ✅ Shader Installer Panel
+
 ✅ Pc Specs Panel
+
 ✅ About Panel
 
 
