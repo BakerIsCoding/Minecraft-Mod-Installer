@@ -1,0 +1,24 @@
+<project name="FriendsVsFriends-SaveEditor" default="default" basedir=".">
+    <description>Builds, tests, and runs the project FriendsVsFriends-SaveEditor.</description>
+    
+    <!-- Define propiedades -->
+    <property name="main.class" value="com.tu.paquete.TuClasePrincipal"/>
+    <property name="jar.file" value="dist/NombreDeTuApp.jar"/>
+
+    <!-- Configuración para crear el JAR -->
+    <target name="jar" depends="compile">
+        <jar destfile="${jar.file}" basedir="build/classes">
+            <!-- Incluye los archivos necesarios en el JAR -->
+            <fileset dir="ruta/a/tu/codigo" includes="**/*.class"/>
+            <fileset dir="ruta/a/tus/recursos" includes="**/*"/>
+            
+            <!-- Especifica la clase principal del JAR -->
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <!-- Otras configuraciones y tareas -->
+
+</project>
