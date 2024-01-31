@@ -1,4 +1,4 @@
-package com.baker.tabbed;
+package com.baker.View.Components;
 
 import java.awt.Color;
 import java.awt.Graphics;
