@@ -22,14 +22,14 @@ import org.json.JSONObject;
  *
  * @author Baker
  */
-public class FirstScreen extends javax.swing.JFrame {
+public class LoaderScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form FirstScreen
      */
     private int mouseX, mouseY;
 
-    public FirstScreen() {
+    public LoaderScreen() {
         try {
             // Ocultar la barra de título
             setUndecorated(false);
@@ -58,10 +58,9 @@ public class FirstScreen extends javax.swing.JFrame {
             // Mostrar la pantalla después de ocultar la barra de título
             setVisible(true);
             Thread.sleep(3000);
-
             startNextPanel();
         } catch (InterruptedException ex) {
-            Logger.getLogger(FirstScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoaderScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -169,7 +168,7 @@ public class FirstScreen extends javax.swing.JFrame {
         content.repaint();
 
         // Size and location
-        setSize(584, 578);
+        setSize(750, 545);
         setLocation(0, 0);
         setLocationRelativeTo(null);
         infoPanel.setVisible(true);

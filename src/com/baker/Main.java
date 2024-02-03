@@ -3,7 +3,7 @@
  */
 package com.baker;
 
-import com.baker.View.FirstScreen;
+import com.baker.View.LoaderScreen;
 //import com.baker.firstInterface.AllPanels;
 //import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
@@ -24,7 +24,7 @@ public class Main {
                 ex.printStackTrace();
             }
             //Starting the initial screen
-            new FirstScreen();
+            new LoaderScreen();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

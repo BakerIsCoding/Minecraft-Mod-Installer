@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
@@ -25,10 +27,11 @@ import org.jdesktop.animation.timing.interpolation.PropertySetter;
 
 public class MaterialTabbed extends JTabbedPane {
     
-    
+    private int mouseX, mouseY;
     
     public MaterialTabbed() {
         setUI(new MaterialTabbedUI());
+        
     }
 
     public class MaterialTabbedUI extends MetalTabbedPaneUI {
@@ -73,7 +76,9 @@ public class MaterialTabbed extends JTabbedPane {
 
         @Override
         protected Insets getTabInsets(int i, int i1) {
+            
             return new Insets(10, 10, 10, 10);
+            
         }
 
         @Override

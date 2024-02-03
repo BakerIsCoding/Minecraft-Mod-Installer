@@ -13,7 +13,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicFileChooserUI;
 import org.json.JSONObject;
 
 /**
@@ -21,6 +23,8 @@ import org.json.JSONObject;
  * @author Baker
  */
 public class AllPanels extends javax.swing.JPanel {
+
+    private int mouseX, mouseY;
 
     /**
      * Creates new form UserInfoPanel
@@ -38,7 +42,7 @@ public class AllPanels extends javax.swing.JPanel {
         pcInfoTextArea.setEditable(false);
 
         // Set size and location
-        setSize(584, 578);
+        setSize(750, 545);
         setLocation(0, 0);
 
         try {
@@ -46,6 +50,20 @@ public class AllPanels extends javax.swing.JPanel {
         } catch (SimpleException e) {
             System.out.println("error " + e.getMessage());
         }
+        addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                mouseX = e.getX();
+                mouseY = e.getY();
+            }
+        });
+
+        addMouseMotionListener(new MouseAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                int x = e.getXOnScreen() - mouseX;
+                int y = e.getYOnScreen() - mouseY;
+                setLocation(x, y);
+            }
+        });
 
         System.out.println("Started!");
 
@@ -72,7 +90,9 @@ public class AllPanels extends javax.swing.JPanel {
         AllPanels = new com.baker.View.Components.MaterialTabbed();
         userInfoPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        OtherTitle1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        modRoute = new javax.swing.JTextField();
+        searchModButton = new javax.swing.JButton();
         matchEditor = new javax.swing.JPanel();
         MainTitle = new javax.swing.JLabel();
         pcInfo = new javax.swing.JPanel();
@@ -82,36 +102,58 @@ public class AllPanels extends javax.swing.JPanel {
 
         AllPanels.setBackground(new java.awt.Color(62, 62, 62));
         AllPanels.setForeground(new java.awt.Color(255, 255, 255));
+        AllPanels.setToolTipText("");
 
         jSeparator1.setForeground(new java.awt.Color(155, 216, 184));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        OtherTitle1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        OtherTitle1.setText("COOL PANEL WITH BAR -->");
+        jLabel1.setText("Ruta de la carpeta de mods:");
+
+        modRoute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modRouteActionPerformed(evt);
+            }
+        });
+
+        searchModButton.setText("Explorar");
+        searchModButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchModButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout userInfoPanelLayout = new javax.swing.GroupLayout(userInfoPanel);
         userInfoPanel.setLayout(userInfoPanelLayout);
         userInfoPanelLayout.setHorizontalGroup(
             userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userInfoPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userInfoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(OtherTitle1)
-                .addGap(30, 30, 30)
+                .addGroup(userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(userInfoPanelLayout.createSequentialGroup()
+                        .addComponent(modRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchModButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addGap(247, 247, 247))
         );
         userInfoPanelLayout.setVerticalGroup(
             userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userInfoPanelLayout.createSequentialGroup()
-                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(userInfoPanelLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(OtherTitle1)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchModButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        AllPanels.addTab("panel1", userInfoPanel);
+        AllPanels.addTab("Mods", userInfoPanel);
 
         matchEditor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -127,17 +169,17 @@ public class AllPanels extends javax.swing.JPanel {
         matchEditor.setLayout(matchEditorLayout);
         matchEditorLayout.setHorizontalGroup(
             matchEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+            .addComponent(MainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
         );
         matchEditorLayout.setVerticalGroup(
             matchEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(matchEditorLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(MainTitle)
-                .addContainerGap(458, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
         );
 
-        AllPanels.addTab("panel2", matchEditor);
+        AllPanels.addTab("Shaders", matchEditor);
 
         pcInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -157,11 +199,11 @@ public class AllPanels extends javax.swing.JPanel {
         pcInfo.setLayout(pcInfoLayout);
         pcInfoLayout.setHorizontalGroup(
             pcInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+            .addComponent(MainTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
             .addGroup(pcInfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ScrollPane)
-                .addContainerGap())
+                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pcInfoLayout.setVerticalGroup(
             pcInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,8 +211,8 @@ public class AllPanels extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(MainTitle1)
                 .addGap(18, 18, 18)
-                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         AllPanels.addTab("Información del Pc", pcInfo);
@@ -197,17 +239,37 @@ public class AllPanels extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_pcInfoax
 
+    private void modRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modRouteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modRouteActionPerformed
+
+    private void searchModButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchModButtonActionPerformed
+        try {
+            JFileChooser fileChooser = new JFileChooser("C://");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            fileChooser.setDialogTitle("Selecciona la carpeta de mods");
+            if(fileChooser.showOpenDialog(this) != JFileChooser.CANCEL_OPTION){
+                    
+                modRoute.setText(fileChooser.getSelectedFile().getAbsolutePath());
+            }
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_searchModButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.baker.View.Components.MaterialTabbed AllPanels;
     private javax.swing.JLabel MainTitle;
     private javax.swing.JLabel MainTitle1;
-    private javax.swing.JLabel OtherTitle1;
     private javax.swing.JScrollPane ScrollPane;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel matchEditor;
+    private javax.swing.JTextField modRoute;
     private javax.swing.JPanel pcInfo;
     private javax.swing.JTextArea pcInfoTextArea;
+    private javax.swing.JButton searchModButton;
     private javax.swing.JPanel userInfoPanel;
     // End of variables declaration//GEN-END:variables
 }
