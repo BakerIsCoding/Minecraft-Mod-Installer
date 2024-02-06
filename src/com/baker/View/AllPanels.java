@@ -93,6 +93,7 @@ public class AllPanels extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         modRoute = new javax.swing.JTextField();
         searchModButton = new javax.swing.JButton();
+        downloadButton = new javax.swing.JButton();
         matchEditor = new javax.swing.JPanel();
         MainTitle = new javax.swing.JLabel();
         pcInfo = new javax.swing.JPanel();
@@ -122,6 +123,13 @@ public class AllPanels extends javax.swing.JPanel {
             }
         });
 
+        downloadButton.setText("Descargar");
+        downloadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downloadButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout userInfoPanelLayout = new javax.swing.GroupLayout(userInfoPanel);
         userInfoPanel.setLayout(userInfoPanelLayout);
         userInfoPanelLayout.setHorizontalGroup(
@@ -131,7 +139,9 @@ public class AllPanels extends javax.swing.JPanel {
                 .addGroup(userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(userInfoPanelLayout.createSequentialGroup()
-                        .addComponent(modRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(downloadButton)
+                            .addComponent(modRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchModButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
@@ -150,7 +160,9 @@ public class AllPanels extends javax.swing.JPanel {
                 .addGroup(userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchModButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(downloadButton)
+                .addGap(56, 56, 56))
         );
 
         AllPanels.addTab("Mods", userInfoPanel);
@@ -257,12 +269,18 @@ public class AllPanels extends javax.swing.JPanel {
 
     }//GEN-LAST:event_searchModButtonActionPerformed
 
+    private void downloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadButtonActionPerformed
+        // TODO add your handling code here
+        
+    }//GEN-LAST:event_downloadButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.baker.View.Components.MaterialTabbed AllPanels;
     private javax.swing.JLabel MainTitle;
     private javax.swing.JLabel MainTitle1;
     private javax.swing.JScrollPane ScrollPane;
+    private javax.swing.JButton downloadButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel matchEditor;
