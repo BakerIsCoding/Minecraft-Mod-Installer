@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 
 /**
  *
@@ -28,13 +29,17 @@ import java.net.URL;
  */
 public class DownloadFile {
 
-    private static void downloadFile(String fileURL, String saveDir) throws IOException {
-        URL url = new URL(fileURL);
-        try ( InputStream in = url.openStream();  FileOutputStream fos = new FileOutputStream(saveDir + File.separator + "mods.zip")) {
+    private String urlStr = "http://10.1.3.142:5000/download/mods";
+    private String zipFilePath = "/path/to/save/yourfile.zip"; // Ruta donde guardarás el archivo ZIP descargado
+
+    public void downloadFile() throws IOException {
+        URL url = new URL(urlStr);
+        URLConnection conn = url.openConnection();
+        try ( InputStream inputStream = conn.getInputStream();  FileOutputStream outputStream = new FileOutputStream(zipFilePath)) {
             byte[] buffer = new byte[1024];
-            int length;
-            while ((length = in.read(buffer)) != -1) {
-                fos.write(buffer, 0, length);
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
             }
         }
     }
