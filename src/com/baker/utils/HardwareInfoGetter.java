@@ -47,4 +47,15 @@ public class HardwareInfoGetter {
         return info.toString();
     }
 
+    public Integer getOsType() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        if (osName.contains("win")) {
+            return 0;
+        } else if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")) {
+            return 1;
+        } else {
+            return null;
+        }
+    }
+
 }

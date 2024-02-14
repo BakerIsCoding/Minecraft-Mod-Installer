@@ -4,13 +4,16 @@
  */
 package com.baker.View;
 
+import com.baker.Requests.DownloadFile;
 import com.baker.Requests.RequestGet;
 import com.baker.Requests.RequestPost;
 import com.baker.simpleExceptions.SimpleException;
 import com.baker.utils.HardwareInfoGetter;
+import com.baker.utils.Popups;
 import com.baker.utils.TypesChangers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -25,6 +28,8 @@ import org.json.JSONObject;
 public class AllPanels extends javax.swing.JPanel {
 
     private int mouseX, mouseY;
+    Popups popup = new Popups();
+    HardwareInfoGetter hardware = new HardwareInfoGetter();
 
     /**
      * Creates new form UserInfoPanel
@@ -37,6 +42,7 @@ public class AllPanels extends javax.swing.JPanel {
         HardwareInfoGetter hardware = new HardwareInfoGetter();
 
         initComponents();
+        setDefaultInfo();
         //Set Text Area
         pcInfoTextArea.setText(hardware.getSystemInfo());
         pcInfoTextArea.setEditable(false);
@@ -69,6 +75,39 @@ public class AllPanels extends javax.swing.JPanel {
 
     }
 
+    private void setDefaultInfo() {
+        try {
+            if (hardware.getOsType() == 0) {
+                String appDataPath = System.getenv("APPDATA");
+                String minecraftModsPath = appDataPath + File.separator + ".minecraft" + File.separator + "mods";
+
+                File modsFolder = new File(minecraftModsPath);
+
+                if (!modsFolder.exists()) {
+                    // Intentar crear la carpeta si no existe
+                    boolean wasCreated = modsFolder.mkdirs();
+                    if (!wasCreated) {
+                        popup.errorPopup("Error", "No se pudo crear la carpeta de mods.");
+                    }
+                }
+
+                if (modsFolder.exists() && modsFolder.isDirectory()) {
+                    modRoute.setText(minecraftModsPath);
+                } else {
+                    modRoute.setText("");
+                }
+            }
+
+            String currentPath = System.getProperty("user.dir");
+
+            String downloadsPath = currentPath + File.separator + "downloaded";
+            downloadZipModRoute.setText(downloadsPath);
+        } catch (Exception e) {
+            popup.errorPopup("Error", e.getMessage());
+        }
+
+    }
+
     private void userStatsPanel() throws SimpleException {
         userInfoWriteOnLabels();
 
@@ -88,13 +127,20 @@ public class AllPanels extends javax.swing.JPanel {
     private void initComponents() {
 
         AllPanels = new com.baker.View.Components.MaterialTabbed();
-        userInfoPanel = new javax.swing.JPanel();
+        modsPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
+        rutaDescargaLabel = new javax.swing.JLabel();
+        downloadZipModRoute = new javax.swing.JTextField();
+        searchZipModButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         modRoute = new javax.swing.JTextField();
         searchModButton = new javax.swing.JButton();
         downloadButton = new javax.swing.JButton();
-        matchEditor = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        progressBar = new javax.swing.JProgressBar();
+        shadersPanel = new javax.swing.JPanel();
         MainTitle = new javax.swing.JLabel();
         pcInfo = new javax.swing.JPanel();
         ScrollPane = new javax.swing.JScrollPane();
@@ -108,7 +154,22 @@ public class AllPanels extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(155, 216, 184));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel1.setText("Ruta de la carpeta de mods:");
+        rutaDescargaLabel.setText("Ruta de descarga de los mods");
+
+        downloadZipModRoute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downloadZipModRouteActionPerformed(evt);
+            }
+        });
+
+        searchZipModButton.setText("Explorar");
+        searchZipModButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchZipModButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Carpeta de Mods:");
 
         modRoute.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,44 +191,91 @@ public class AllPanels extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout userInfoPanelLayout = new javax.swing.GroupLayout(userInfoPanel);
-        userInfoPanel.setLayout(userInfoPanelLayout);
-        userInfoPanelLayout.setHorizontalGroup(
-            userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userInfoPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(userInfoPanelLayout.createSequentialGroup()
-                        .addGroup(userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(downloadButton)
-                            .addComponent(modRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchModButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+        jLabel2.setText("Mod Downloader");
+
+        jCheckBox1.setText("Descomprimir Mods");
+
+        jCheckBox2.setText("Instalar Mods");
+
+        javax.swing.GroupLayout modsPanelLayout = new javax.swing.GroupLayout(modsPanel);
+        modsPanel.setLayout(modsPanelLayout);
+        modsPanelLayout.setHorizontalGroup(
+            modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modsPanelLayout.createSequentialGroup()
+                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(modsPanelLayout.createSequentialGroup()
+                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(modsPanelLayout.createSequentialGroup()
+                                .addGap(199, 199, 199)
+                                .addComponent(jLabel2))
+                            .addGroup(modsPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(modsPanelLayout.createSequentialGroup()
+                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(modsPanelLayout.createSequentialGroup()
+                                                .addComponent(rutaDescargaLabel)
+                                                .addGap(0, 221, Short.MAX_VALUE))
+                                            .addComponent(modRoute)
+                                            .addComponent(downloadZipModRoute))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(searchModButton)
+                                            .addComponent(searchZipModButton)))))
+                            .addGroup(modsPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox2)
+                                    .addComponent(jCheckBox1))))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modsPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(modsPanelLayout.createSequentialGroup()
+                        .addGap(205, 205, 205)
+                        .addComponent(downloadButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(247, 247, 247))
         );
-        userInfoPanelLayout.setVerticalGroup(
-            userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userInfoPanelLayout.createSequentialGroup()
+        modsPanelLayout.setVerticalGroup(
+            modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modsPanelLayout.createSequentialGroup()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(userInfoPanelLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+            .addGroup(modsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchModButton))
+                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(modsPanelLayout.createSequentialGroup()
+                        .addComponent(modRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(rutaDescargaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(downloadZipModRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(modsPanelLayout.createSequentialGroup()
+                        .addComponent(searchModButton)
+                        .addGap(40, 40, 40)
+                        .addComponent(searchZipModButton)))
+                .addGap(53, 53, 53)
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(downloadButton)
-                .addGap(56, 56, 56))
+                .addGap(49, 49, 49))
         );
 
-        AllPanels.addTab("Mods", userInfoPanel);
+        AllPanels.addTab("Mods", modsPanel);
 
-        matchEditor.addMouseListener(new java.awt.event.MouseAdapter() {
+        shadersPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ax(evt);
             }
@@ -177,21 +285,21 @@ public class AllPanels extends javax.swing.JPanel {
         MainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MainTitle.setText("PANEL 2");
 
-        javax.swing.GroupLayout matchEditorLayout = new javax.swing.GroupLayout(matchEditor);
-        matchEditor.setLayout(matchEditorLayout);
-        matchEditorLayout.setHorizontalGroup(
-            matchEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout shadersPanelLayout = new javax.swing.GroupLayout(shadersPanel);
+        shadersPanel.setLayout(shadersPanelLayout);
+        shadersPanelLayout.setHorizontalGroup(
+            shadersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(MainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
         );
-        matchEditorLayout.setVerticalGroup(
-            matchEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(matchEditorLayout.createSequentialGroup()
+        shadersPanelLayout.setVerticalGroup(
+            shadersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(shadersPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(MainTitle)
                 .addContainerGap(382, Short.MAX_VALUE))
         );
 
-        AllPanels.addTab("Shaders", matchEditor);
+        AllPanels.addTab("Shaders", shadersPanel);
 
         pcInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -260,19 +368,54 @@ public class AllPanels extends javax.swing.JPanel {
             JFileChooser fileChooser = new JFileChooser("C://");
             fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             fileChooser.setDialogTitle("Selecciona la carpeta de mods");
-            if(fileChooser.showOpenDialog(this) != JFileChooser.CANCEL_OPTION){
-                    
+            if (fileChooser.showOpenDialog(this) != JFileChooser.CANCEL_OPTION) {
+
                 modRoute.setText(fileChooser.getSelectedFile().getAbsolutePath());
             }
         } catch (Exception e) {
+            popup.errorPopup("Error", e.getMessage());
         }
 
     }//GEN-LAST:event_searchModButtonActionPerformed
 
     private void downloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadButtonActionPerformed
-        // TODO add your handling code here
-        
+        try {
+            DownloadFile download = new DownloadFile();
+            
+            Boolean downloadedSuccesfully = download.downloadFile();
+            if (downloadedSuccesfully) {
+               
+            }
+        } catch (Exception e) {
+            popup.errorPopup("Error", e.getMessage());
+        }
+
     }//GEN-LAST:event_downloadButtonActionPerformed
+
+    private void downloadZipModRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadZipModRouteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_downloadZipModRouteActionPerformed
+
+    private void searchZipModButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchZipModButtonActionPerformed
+        try {
+            String route = downloadZipModRoute.getText();
+            if (route != "") {
+                JFileChooser fileChooser = new JFileChooser(route);
+            } else {
+
+            }
+            JFileChooser fileChooser = new JFileChooser(route);
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            fileChooser.setDialogTitle("Ruta de descarga del zip");
+            if (fileChooser.showOpenDialog(this) != JFileChooser.CANCEL_OPTION) {
+
+                modRoute.setText(fileChooser.getSelectedFile().getAbsolutePath());
+            }
+
+        } catch (Exception e) {
+            popup.errorPopup("Error", e.getMessage());
+        }
+    }//GEN-LAST:event_searchZipModButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -281,13 +424,20 @@ public class AllPanels extends javax.swing.JPanel {
     private javax.swing.JLabel MainTitle1;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JButton downloadButton;
+    private javax.swing.JTextField downloadZipModRoute;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JPanel matchEditor;
     private javax.swing.JTextField modRoute;
+    private javax.swing.JPanel modsPanel;
     private javax.swing.JPanel pcInfo;
     private javax.swing.JTextArea pcInfoTextArea;
+    private javax.swing.JProgressBar progressBar;
+    private javax.swing.JLabel rutaDescargaLabel;
     private javax.swing.JButton searchModButton;
-    private javax.swing.JPanel userInfoPanel;
+    private javax.swing.JButton searchZipModButton;
+    private javax.swing.JPanel shadersPanel;
     // End of variables declaration//GEN-END:variables
 }

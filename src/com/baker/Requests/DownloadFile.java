@@ -17,11 +17,16 @@
 package com.baker.Requests;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.zip.ZipFile;
 
 /**
  *
@@ -29,18 +34,74 @@ import java.net.URLConnection;
  */
 public class DownloadFile {
 
-    private String urlStr = "http://10.1.3.142:5000/download/mods";
-    private String zipFilePath = "/path/to/save/yourfile.zip"; // Ruta donde guardarás el archivo ZIP descargado
+    private String urlDownload = "http://192.168.1.149:5000/download/mods";
+    private String folder = "./downloaded/";
+    private String fullZipFilePath = folder + "mods.zip";
 
-    public void downloadFile() throws IOException {
-        URL url = new URL(urlStr);
+    public boolean downloadFile() throws IOException {
+        Boolean done = false;
+        
+        File directory = new File(folder);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        
+        URL url = new URL(urlDownload);
         URLConnection conn = url.openConnection();
-        try ( InputStream inputStream = conn.getInputStream();  FileOutputStream outputStream = new FileOutputStream(zipFilePath)) {
+        try (InputStream inputStream = conn.getInputStream(); FileOutputStream outputStream = new FileOutputStream(fullZipFilePath)) {
             byte[] buffer = new byte[1024];
             int bytesRead;
             while ((bytesRead = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, bytesRead);
             }
+            done = true;
+        }
+        return done;
+    }
+
+    public void unzip(String pasteDir) throws IOException {
+        try (ZipFile zipFile = new ZipFile(fullZipFilePath)) {
+            zipFile.stream().forEach(entry -> {
+                try {
+                    String filePath = pasteDir + File.separator + entry.getName();
+                    if (entry.isDirectory()) {
+                        Files.createDirectories(Paths.get(filePath));
+                    } else {
+                        try (InputStream is = zipFile.getInputStream(entry)) {
+                            Files.copy(is, Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
+                        }
+                    }
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+            });
         }
     }
+
+    public void deleteOldMods(String modsDirPath) {
+        // Ruta a la carpeta de mods de Minecraft
+        modsDirPath = "./minecraft/mods";
+
+        File modsDir = new File(modsDirPath);
+
+        if (modsDir.exists() && modsDir.isDirectory()) {
+            File[] files = modsDir.listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File file) {
+                    return file.isFile();
+                }
+            });
+
+            // Elimina cada archivo encontrado
+            for (File file : files) {
+                if (!file.delete()) {
+                    // Maneja el caso donde el archivo no pudo ser eliminado
+                    System.out.println("No se pudo eliminar el mod: " + file.getName());
+                }
+            }
+        } else {
+            System.out.println("El directorio de mods no existe o no es un directorio.");
+        }
+    }
+
 }
