@@ -8,16 +8,20 @@ import com.baker.Requests.DownloadFile;
 import com.baker.Requests.RequestGet;
 import com.baker.Requests.RequestPost;
 import com.baker.simpleExceptions.SimpleException;
+import com.baker.utils.FileFolderManager;
 import com.baker.utils.HardwareInfoGetter;
 import com.baker.utils.Popups;
 import com.baker.utils.TypesChangers;
+import com.baker.utils.ZipManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.Popup;
 import javax.swing.plaf.basic.BasicFileChooserUI;
 import org.json.JSONObject;
 
@@ -28,6 +32,9 @@ import org.json.JSONObject;
 public class AllPanels extends javax.swing.JPanel {
 
     private int mouseX, mouseY;
+    private String domain = "http://127.0.0.1";
+    //private String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
+    private String apikey = "API-gDjlVTn76N2ZpbaE8yuoVSgoOwGnXCHJJa7vMQOp";
     Popups popup = new Popups();
     HardwareInfoGetter hardware = new HardwareInfoGetter();
 
@@ -185,6 +192,11 @@ public class AllPanels extends javax.swing.JPanel {
         });
 
         downloadButton.setText("Descargar");
+        downloadButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                downloadButtonMouseClicked(evt);
+            }
+        });
         downloadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 downloadButtonActionPerformed(evt);
@@ -379,17 +391,7 @@ public class AllPanels extends javax.swing.JPanel {
     }//GEN-LAST:event_searchModButtonActionPerformed
 
     private void downloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadButtonActionPerformed
-        try {
-            DownloadFile download = new DownloadFile();
-            
-            Boolean downloadedSuccesfully = download.downloadFile();
-            if (downloadedSuccesfully) {
-               
-            }
-        } catch (Exception e) {
-            popup.errorPopup("Error", e.getMessage());
-        }
-
+        
     }//GEN-LAST:event_downloadButtonActionPerformed
 
     private void downloadZipModRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadZipModRouteActionPerformed
@@ -416,6 +418,27 @@ public class AllPanels extends javax.swing.JPanel {
             popup.errorPopup("Error", e.getMessage());
         }
     }//GEN-LAST:event_searchZipModButtonActionPerformed
+
+    private void downloadButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_downloadButtonMouseClicked
+        RequestGet rget = new RequestGet();
+        Popups popup = new Popups();
+        ZipManager zipmanager = new ZipManager();
+        String appDataPath = System.getenv("APPDATA");
+        
+        String zipFilePath = appDataPath + "/.minecraft-mod-installer/temp/mods.zip";
+        String destDirectory = appDataPath + "/.minecraft/mods/";
+        
+        Map<String, String> parameters = Map.of(
+                "apikey", apikey
+        );
+        String hasErrors = rget.downloadFile(domain + "/api/minecraft/getmods.php", parameters, zipFilePath);
+        if (hasErrors != null){
+            popup.errorPopup("Error", hasErrors);
+        }
+        
+        zipmanager.unzip(zipFilePath, destDirectory);
+        
+    }//GEN-LAST:event_downloadButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

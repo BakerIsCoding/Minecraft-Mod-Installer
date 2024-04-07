@@ -7,10 +7,12 @@ package com.baker.View;
 import com.baker.Requests.RequestGet;
 import com.baker.simpleExceptions.SimpleException;
 import com.baker.utils.HardwareInfoGetter;
+import com.baker.utils.Popups;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -30,38 +32,36 @@ public class LoaderScreen extends javax.swing.JFrame {
     private int mouseX, mouseY;
 
     public LoaderScreen() {
-        try {
-            // Ocultar la barra de título
-            setUndecorated(false);
-            initComponents();
-            setResizable(false);
 
-            //MouseListener para el arrastre
-            addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    mouseX = e.getX();
-                    mouseY = e.getY();
-                }
-            });
+        // Ocultar la barra de título
+        setUndecorated(false);
+        initComponents();
+        setResizable(false);
 
-            addMouseMotionListener(new MouseAdapter() {
-                public void mouseDragged(MouseEvent e) {
-                    int x = e.getXOnScreen() - mouseX;
-                    int y = e.getYOnScreen() - mouseY;
-                    setLocation(x, y);
-                }
-            });
+        //MouseListener para el arrastre
+        addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                mouseX = e.getX();
+                mouseY = e.getY();
+            }
+        });
 
-            // Pantalla en el medio
-            setLocationRelativeTo(null);
+        addMouseMotionListener(new MouseAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                int x = e.getXOnScreen() - mouseX;
+                int y = e.getYOnScreen() - mouseY;
+                setLocation(x, y);
+            }
+        });
 
-            // Mostrar la pantalla después de ocultar la barra de título
-            setVisible(true);
-            Thread.sleep(3000);
-            startNextPanel();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(LoaderScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // Pantalla en el medio
+        setLocationRelativeTo(null);
+
+        // Mostrar la pantalla después de ocultar la barra de título
+        setVisible(true);
+
+        startNextPanel();
+
     }
 
     /**
@@ -78,7 +78,7 @@ public class LoaderScreen extends javax.swing.JFrame {
         Title = new javax.swing.JLabel();
         separator = new javax.swing.JSeparator();
         versionText = new javax.swing.JLabel();
-        Title1 = new javax.swing.JLabel();
+        infoLabel = new javax.swing.JLabel();
         versionText1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -102,9 +102,9 @@ public class LoaderScreen extends javax.swing.JFrame {
 
         versionText.setText("Ver: 1.0");
 
-        Title1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Title1.setText("Starting, wait a sec");
+        infoLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        infoLabel.setText("Starting ");
 
         versionText1.setText("Made by baker with ♥");
 
@@ -121,7 +121,7 @@ public class LoaderScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(versionText))
                     .addComponent(separator, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Title1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         contentLayout.setVerticalGroup(
@@ -131,9 +131,9 @@ public class LoaderScreen extends javax.swing.JFrame {
                 .addComponent(Title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Title1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(versionText)
                     .addComponent(versionText1))
@@ -155,32 +155,136 @@ public class LoaderScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startNextPanel() {
-        // Get the user input
+        Popups popup = new Popups();
+        Integer timesTried = 0;
+        Boolean startedOtherPanel = false;
+        try {
+            while (timesTried != 3) {
+                timesTried += 1;
+                RequestGet rget = new RequestGet();
+                Integer checksPassed = 0;
 
-        //if (!authToken.isEmpty()) {
-        // Calling the new panel and sending the user data
-        AllPanels infoPanel = new AllPanels();
+                infoLabel.setText("Contactando con el servidor ...");
+                Thread.sleep(100);
+                infoLabel.setText("Comprobando el endpoint \"login\" ...");
+                Map<String, String> parameters = Map.of(
+                        "alive", "areyoualive?"
+                );
+                JSONObject response = rget.sendGetRequest("https://btools.me/api/minecraft/login.php", parameters);
 
-        // Panel Content Overwrite
-        content.removeAll();
-        content.add(infoPanel, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
+                if (response != null) {
+                    checksPassed += 1;
+                }
+                Thread.sleep(100);
+                infoLabel.setText("Comprobando el endpoint \"getallusers\" ...");
 
-        // Size and location
-        setSize(750, 545);
-        setLocation(0, 0);
-        setLocationRelativeTo(null);
-        infoPanel.setVisible(true);
+                response = rget.sendGetRequest("https://btools.me/api/minecraft/getallusers.php", parameters);
+
+                if (response != null) {
+                    checksPassed += 1;
+                }
+
+                Thread.sleep(100);
+                //GetMOds
+                infoLabel.setText("Comprobando el endpoint \"getmods\" ...");
+
+                response = rget.sendGetRequest("https://btools.me/api/minecraft/getmods.php", parameters);
+
+                if (response != null) {
+                    checksPassed += 1;
+                }
+                Thread.sleep(100);
+                infoLabel.setText("Comprobando la disponibilidad de los mods ...");
+
+                Thread.sleep(100);
+                infoLabel.setText("Comprobando el endpoint \"getshaders\" ...");
+
+                response = rget.sendGetRequest("https://btools.me/api/minecraft/getshaders.php", parameters);
+
+                if (response != null) {
+                    checksPassed += 1;
+                }
+                Thread.sleep(100);
+                infoLabel.setText("Comprobando la disponibilidad de los shaders ...");
+
+                Thread.sleep(100);
+                infoLabel.setText("Comprobando el endpoint \"getconfigs\" ...");
+
+                response = rget.sendGetRequest("https://btools.me/api/minecraft/getconfigs.php", parameters);
+
+                if (response != null) {
+                    checksPassed += 1;
+                }
+                Thread.sleep(100);
+                infoLabel.setText("Comprobando la disponibilidad de las configuraciones ...");
+
+                Thread.sleep(100);
+                infoLabel.setText("Conexiones con éxito " + checksPassed + "/5 ...");
+                Thread.sleep(2200);
+                
+                //ELIMINAR ESTO
+                //ELIMINAR ESTO
+                //ELIMINAR ESTO//ELIMINAR ESTO
+                //ELIMINAR ESTO
+                //ELIMINAR ESTO
+                //ELIMINAR ESTO//ELIMINAR ESTO
+                //ELIMINAR ESTO
+                //ELIMINAR ESTO
+                //ELIMINAR ESTO//ELIMINAR ESTO
+                //ELIMINAR ESTO
+                //ELIMINAR ESTO
+                //ELIMINAR ESTO//ELIMINAR ESTO
+                checksPassed = 5;
+                
+                
+                if (checksPassed == 5) {
+                    startedOtherPanel = true;
+                    Thread.sleep(100);
+                    infoLabel.setText("Iniciando Mod Installer ...");
+                    Thread.sleep(50);
+                    timesTried = 3;
+                    LoginScreen loginPanel = new LoginScreen(this);
+
+                    // Panel Content Overwrite
+                    content.removeAll();
+                    content.add(loginPanel, BorderLayout.CENTER);
+                    content.revalidate();
+                    content.repaint();
+
+                    // Size and location
+                    setSize(265, 280);
+                    setLocation(0, 0);
+                    setLocationRelativeTo(null);
+                    loginPanel.setVisible(true);
+                } else {
+                    infoLabel.setText("<html><div style='text-align: center;'>No se ha podido contactar con todos los endpoints,<br>Reintentando ...</div></html>");
+                    Thread.sleep(1300);
+
+                }
+            }
+            if (timesTried == 3 && !startedOtherPanel) {
+                infoLabel.setText("<html><div style='text-align: center;'>Se ha alcanzado el máximo de reintentos<br>Cerrando aplicación ...<br>3</div></html>");
+                Thread.sleep(1000);
+                infoLabel.setText("<html><div style='text-align: center;'>Se ha alcanzado el máximo de reintentos<br>Cerrando aplicación ...<br>2</div></html>");
+                Thread.sleep(1000);
+                infoLabel.setText("<html><div style='text-align: center;'>Se ha alcanzado el máximo de reintentos<br>Cerrando aplicación ...<br>1</div></html>");
+                Thread.sleep(1000);
+                System.out.println("AppClosed, times tried 3");
+                dispose();
+
+            }
+
+        } catch (InterruptedException e) {
+            popup.errorPopup("Ha ocurrido un error", "Error al intentar parar el hilo, " + e.getMessage());
+        }
 
     }
 
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Title;
-    private javax.swing.JLabel Title1;
     private javax.swing.JPanel content;
+    private javax.swing.JLabel infoLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator separator;
     private javax.swing.JLabel versionText;

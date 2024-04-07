@@ -65,7 +65,7 @@
                           <Component id="versionText" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="separator" alignment="1" max="32767" attributes="0"/>
-                      <Component id="Title1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="infoLabel" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -78,9 +78,9 @@
                   <Component id="Title" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="separator" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="Title1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="39" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="infoLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="versionText" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="versionText1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -112,13 +112,13 @@
             <Property name="text" type="java.lang.String" value="Ver: 1.0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="Title1">
+        <Component class="javax.swing.JLabel" name="infoLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Starting, wait a sec"/>
+            <Property name="text" type="java.lang.String" value="Starting "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="versionText1">
