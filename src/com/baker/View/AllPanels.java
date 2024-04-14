@@ -133,6 +133,7 @@ public class AllPanels extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        graphicBtnGroup = new javax.swing.ButtonGroup();
         AllPanels = new com.baker.View.Components.MaterialTabbed();
         modsPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -149,10 +150,22 @@ public class AllPanels extends javax.swing.JPanel {
         progressBar = new javax.swing.JProgressBar();
         shadersPanel = new javax.swing.JPanel();
         MainTitle = new javax.swing.JLabel();
+        configPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        graphicSetHigh = new javax.swing.JRadioButton();
+        graphicSetMid = new javax.swing.JRadioButton();
+        graphicSetLow = new javax.swing.JRadioButton();
         pcInfo = new javax.swing.JPanel();
         ScrollPane = new javax.swing.JScrollPane();
         pcInfoTextArea = new javax.swing.JTextArea();
         MainTitle1 = new javax.swing.JLabel();
+
+        graphicSetMid.setSelected(true);
+
+        graphicBtnGroup.add(graphicSetHigh);
+        graphicBtnGroup.add(graphicSetMid);
+        graphicBtnGroup.add(graphicSetLow);
 
         AllPanels.setBackground(new java.awt.Color(62, 62, 62));
         AllPanels.setForeground(new java.awt.Color(255, 255, 255));
@@ -197,11 +210,6 @@ public class AllPanels extends javax.swing.JPanel {
                 downloadButtonMouseClicked(evt);
             }
         });
-        downloadButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                downloadButtonActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Mod Downloader");
 
@@ -228,7 +236,7 @@ public class AllPanels extends javax.swing.JPanel {
                                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(modsPanelLayout.createSequentialGroup()
                                                 .addComponent(rutaDescargaLabel)
-                                                .addGap(0, 221, Short.MAX_VALUE))
+                                                .addGap(0, 236, Short.MAX_VALUE))
                                             .addComponent(modRoute)
                                             .addComponent(downloadZipModRoute))
                                         .addGap(18, 18, 18)
@@ -301,17 +309,73 @@ public class AllPanels extends javax.swing.JPanel {
         shadersPanel.setLayout(shadersPanelLayout);
         shadersPanelLayout.setHorizontalGroup(
             shadersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
+            .addComponent(MainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
         );
         shadersPanelLayout.setVerticalGroup(
             shadersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(shadersPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(MainTitle)
-                .addContainerGap(382, Short.MAX_VALUE))
+                .addContainerGap(385, Short.MAX_VALUE))
         );
 
         AllPanels.addTab("Shaders", shadersPanel);
+
+        jLabel3.setFont(new java.awt.Font("Sahadeva", 3, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Distant Horizons");
+        jLabel3.setMaximumSize(new java.awt.Dimension(84, 22));
+        jLabel3.setMinimumSize(new java.awt.Dimension(84, 22));
+        jLabel3.setPreferredSize(new java.awt.Dimension(84, 22));
+
+        graphicSetHigh.setText("Graficos Altos");
+        graphicSetHigh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphicSetHighActionPerformed(evt);
+            }
+        });
+
+        graphicSetMid.setText("Graficos Medios");
+
+        graphicSetLow.setText("Grafico Bajos");
+
+        javax.swing.GroupLayout configPanelLayout = new javax.swing.GroupLayout(configPanel);
+        configPanel.setLayout(configPanelLayout);
+        configPanelLayout.setHorizontalGroup(
+            configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, configPanelLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+            .addGroup(configPanelLayout.createSequentialGroup()
+                .addGap(223, 223, 223)
+                .addComponent(graphicSetHigh)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(graphicSetMid)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(graphicSetLow)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        configPanelLayout.setVerticalGroup(
+            configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(graphicSetHigh)
+                    .addComponent(graphicSetMid)
+                    .addComponent(graphicSetLow))
+                .addContainerGap(352, Short.MAX_VALUE))
+        );
+
+        AllPanels.addTab("Config", configPanel);
 
         pcInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -331,7 +395,7 @@ public class AllPanels extends javax.swing.JPanel {
         pcInfo.setLayout(pcInfoLayout);
         pcInfoLayout.setHorizontalGroup(
             pcInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
+            .addComponent(MainTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
             .addGroup(pcInfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -344,7 +408,7 @@ public class AllPanels extends javax.swing.JPanel {
                 .addComponent(MainTitle1)
                 .addGap(18, 18, 18)
                 .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         AllPanels.addTab("Información del Pc", pcInfo);
@@ -389,10 +453,6 @@ public class AllPanels extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_searchModButtonActionPerformed
-
-    private void downloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadButtonActionPerformed
-        
-    }//GEN-LAST:event_downloadButtonActionPerformed
 
     private void downloadZipModRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadZipModRouteActionPerformed
         // TODO add your handling code here:
@@ -440,19 +500,30 @@ public class AllPanels extends javax.swing.JPanel {
         
     }//GEN-LAST:event_downloadButtonMouseClicked
 
+    private void graphicSetHighActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphicSetHighActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_graphicSetHighActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.baker.View.Components.MaterialTabbed AllPanels;
     private javax.swing.JLabel MainTitle;
     private javax.swing.JLabel MainTitle1;
     private javax.swing.JScrollPane ScrollPane;
+    private javax.swing.JPanel configPanel;
     private javax.swing.JButton downloadButton;
     private javax.swing.JTextField downloadZipModRoute;
+    private javax.swing.ButtonGroup graphicBtnGroup;
+    private javax.swing.JRadioButton graphicSetHigh;
+    private javax.swing.JRadioButton graphicSetLow;
+    private javax.swing.JRadioButton graphicSetMid;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField modRoute;
     private javax.swing.JPanel modsPanel;
     private javax.swing.JPanel pcInfo;

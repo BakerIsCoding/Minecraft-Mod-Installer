@@ -14,6 +14,8 @@ import com.baker.utils.HashingManager;
 import com.baker.utils.Popups;
 import com.baker.utils.TypesChangers;
 import java.awt.BorderLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -23,6 +25,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.plaf.basic.BasicFileChooserUI;
 import org.json.JSONObject;
 
@@ -51,15 +54,16 @@ public class LoginScreen extends javax.swing.JPanel {
         this.parentFrame = frame;
 
         initComponents();
-        
+        chargeEventsCustom();   
+
         Boolean credsFileExists = ffm.isCredsFileExisting();
-        if (credsFileExists){
+        if (credsFileExists) {
             String[] encryptedCreds = ffm.readCredFile();
-            if (encryptedCreds != null){
+            if (encryptedCreds != null) {
                 rememberCredentials.setSelected(true);
                 String decryptedUsername = hashmanager.decrypt(encryptedCreds[0]);
                 String decryptedPassword = hashmanager.decrypt(encryptedCreds[1]);
-                
+
                 usernameField.setText(decryptedUsername);
                 passwordField.setText(decryptedPassword);
             }
@@ -199,6 +203,23 @@ public class LoginScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_usernameFieldActionPerformed
 
     private void submitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitButtonMouseClicked
+        buttonAction();
+    }//GEN-LAST:event_submitButtonMouseClicked
+
+    private void chargeEventsCustom(){
+        
+        passwordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buttonAction();
+                }
+            }
+        });
+        
+    }
+    
+    private void buttonAction(){
         Popups popup = new Popups();
 
         String username = usernameField.getText();
@@ -221,11 +242,11 @@ public class LoginScreen extends javax.swing.JPanel {
             } else {
                 FileFolderManager ffm = new FileFolderManager();
                 ffm.createDirectories();
-                
-                if(rememberCredentials.isSelected()){
+
+                if (rememberCredentials.isSelected()) {
                     ffm.writeCredentials(username, password);
                 }
-                
+
                 AllPanels allpanels = new AllPanels();
                 // Panel Content Overwrite
                 JFrame allPanelsFrame = new JFrame("All Panels");
@@ -238,9 +259,7 @@ public class LoginScreen extends javax.swing.JPanel {
                 this.parentFrame.dispose();
             }
         }
-    }//GEN-LAST:event_submitButtonMouseClicked
-
-
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel content;
     private javax.swing.JPasswordField passwordField;
