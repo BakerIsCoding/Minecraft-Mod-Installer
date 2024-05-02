@@ -30,19 +30,19 @@ public class HardwareInfoGetter {
         StringBuilder info = new StringBuilder();
 
         // Información del sistema (ya implementado en la respuesta anterior)
-        info.append("------ INFORMACIÓN BÁSICA ------ \n");
-        info.append("Sistema Operativo: ").append(System.getProperty("os.name")).append("\n");
-        info.append("Versión del Sistema Operativo: ").append(System.getProperty("os.version")).append("\n");
-        info.append("Arquitectura del Sistema: ").append(System.getProperty("os.arch")).append("\n");
-        info.append("User Home Directory: ").append(System.getProperty("user.home")).append("\n");
-        info.append("User Working Directory: ").append(System.getProperty("user.dir")).append("\n\n");
+        //Sistema Operativo
+        info.append("OS NAME: ").append(System.getProperty("os.name")).append("\n");
+        //Arquitectura del Sistema
+        info.append("ARCH: ").append(System.getProperty("os.arch")).append("\n");
+        //User Home Directory
+        info.append("HOME DIR: ").append(System.getProperty("user.home")).append("\n");
 
         // Obtener información sobre la RAM
-        info.append("------ INFORMACIÓN JAVA ------ \n");
-        info.append("Java Vendor: ").append(System.getProperty("java.vendor")).append("\n");
-        info.append("Java Version: ").append(System.getProperty("java.version")).append("\n");
-        info.append("Java VM Vendor: ").append(System.getProperty("java.vm.vendor")).append("\n");
-        info.append("Java VM Version: ").append(System.getProperty("java.vm.version")).append("\n\n");
+        info.append("JAVA\n---------\n");
+        info.append("VENDOR: ").append(System.getProperty("java.vendor")).append("\n");
+        info.append("VERSION: ").append(System.getProperty("java.version")).append("\n");
+        info.append("VM VENDOR: ").append(System.getProperty("java.vm.vendor")).append("\n");
+        info.append("VM VERSION: ").append(System.getProperty("java.vm.version")).append("\n\n");
 
         return info.toString();
     }

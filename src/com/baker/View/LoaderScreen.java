@@ -220,23 +220,8 @@ public class LoaderScreen extends javax.swing.JFrame {
 
                 Thread.sleep(100);
                 infoLabel.setText("Conexiones con éxito " + checksPassed + "/5 ...");
-                Thread.sleep(2200);
-                
-                //ELIMINAR ESTO
-                //ELIMINAR ESTO
-                //ELIMINAR ESTO//ELIMINAR ESTO
-                //ELIMINAR ESTO
-                //ELIMINAR ESTO
-                //ELIMINAR ESTO//ELIMINAR ESTO
-                //ELIMINAR ESTO
-                //ELIMINAR ESTO
-                //ELIMINAR ESTO//ELIMINAR ESTO
-                //ELIMINAR ESTO
-                //ELIMINAR ESTO
-                //ELIMINAR ESTO//ELIMINAR ESTO
-                checksPassed = 5;
-                
-                
+                Thread.sleep(2000);
+
                 if (checksPassed == 5) {
                     startedOtherPanel = true;
                     Thread.sleep(100);
@@ -252,7 +237,7 @@ public class LoaderScreen extends javax.swing.JFrame {
                     content.repaint();
 
                     // Size and location
-                    setSize(265, 280);
+                    setSize(265, 300);
                     setLocation(0, 0);
                     setLocationRelativeTo(null);
                     loginPanel.setVisible(true);

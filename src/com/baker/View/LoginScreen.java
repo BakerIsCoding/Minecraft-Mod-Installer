@@ -153,11 +153,14 @@ public class LoginScreen extends javax.swing.JPanel {
                         .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
                 .addGap(36, 36, 36))
             .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addGroup(contentLayout.createSequentialGroup()
+                    .addGap(32, 32, 32)
+                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(31, Short.MAX_VALUE))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentLayout.createSequentialGroup()
-                    .addContainerGap(43, Short.MAX_VALUE)
-                    .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(42, 42, 42)))
+                    .addContainerGap(16, Short.MAX_VALUE)
+                    .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(18, Short.MAX_VALUE)))
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +255,7 @@ public class LoginScreen extends javax.swing.JPanel {
                 JFrame allPanelsFrame = new JFrame("All Panels");
 
                 allPanelsFrame.add(allpanels, BorderLayout.CENTER);
-                allPanelsFrame.setSize(750, 545);
+                allPanelsFrame.setSize(880, 400);
                 allPanelsFrame.setLocationRelativeTo(null);
                 allPanelsFrame.setVisible(true);
 

@@ -7,6 +7,7 @@ package com.baker.Requests;
 import com.baker.utils.JsonParser;
 import com.baker.simpleExceptions.SimpleException;
 import com.baker.utils.Popups;
+import com.baker.utils.TypesChangers;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
@@ -17,6 +18,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Map;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 import org.json.JSONObject;
 
 /**
@@ -25,46 +28,62 @@ import org.json.JSONObject;
  */
 public class RequestGet {
 
-    public String downloadFile(String url, Map<String, String> parameters, String downloadPath) {
+    
+
+    public String downloadFromUrl(String downloadUrl, String downloadPath, JLabel speedLabel, JLabel etaLabel, long totalFileSize) {
         try {
-            URL obj = new URL(url + "?" + getParamsString(parameters));
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            URL url = new URL(downloadUrl);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setInstanceFollowRedirects(true);  // Asegurarse de que las redirecciones están habilitadas
             con.setRequestMethod("GET");
 
             int responseCode = con.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            // Manejo manual de redirecciones
+            if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM || responseCode == HttpURLConnection.HTTP_SEE_OTHER) {
+                // Obtener nueva URL de la cabecera "Location" y reconectar
+                String newUrl = con.getHeaderField("Location");
+                url = new URL(newUrl);
+                con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("GET");
+                responseCode = con.getResponseCode();
+                System.out.println("Followed Redirect: New Response Code: " + responseCode);
+            }
 
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                String contentType = con.getContentType();
+                long startTime = System.currentTimeMillis();
+                long downloadedBytes = 0;
 
-                // Comprueba si la respuesta es un archivo o un JSON
-                if ("application/json".equals(contentType)) {
-                    // Manejar respuesta JSON (la API key podría no ser válida)
-                    StringBuilder jsonResponse = new StringBuilder();
-                    try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
-                        String inputLine;
-                        while ((inputLine = in.readLine()) != null) {
-                            jsonResponse.append(inputLine);
+                try (InputStream in = new BufferedInputStream(con.getInputStream()); FileOutputStream fileOutputStream = new FileOutputStream(downloadPath)) {
+                    byte[] dataBuffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                        fileOutputStream.write(dataBuffer, 0, bytesRead);
+                        downloadedBytes += bytesRead;
+
+                        long currentTime = System.currentTimeMillis();
+                        long timeElapsed = currentTime - startTime;
+                        if (timeElapsed > 1000) {
+                            double speed = (downloadedBytes / 1024.0 / 1024.0) / (timeElapsed / 1000.0);
+                            double speedRounded = Math.round(speed * 100.0) / 100.0;
+                            long remainingBytes = totalFileSize - downloadedBytes;
+                            long eta = (long) (remainingBytes / (speed * 1024 * 1024));
+
+                            SwingUtilities.invokeLater(() -> {
+                                speedLabel.setText("Velocidad: " + speedRounded + " MB/s");
+                                etaLabel.setText("ETA: " + eta + " s");
+                            });
                         }
                     }
-                    return jsonResponse.toString();
-                } else {
-                    // Si la respuesta es un archivo, procede a descargarlo
-                    try (InputStream in = new BufferedInputStream(con.getInputStream()); FileOutputStream fileOutputStream = new FileOutputStream(downloadPath)) {
-                        byte[] dataBuffer = new byte[1024];
-                        int bytesRead;
-                        while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                            fileOutputStream.write(dataBuffer, 0, bytesRead);
-                        }
-                    }
-                    return null; // La descarga fue exitosa
                 }
+                return null;
             } else {
-                // Si el código de respuesta no es OK, manejar como error
-                return "Error en la solicitud: Código de respuesta = " + responseCode;
+                return "Error en la descarga: Código de respuesta = " + responseCode;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "Excepción al procesar la solicitud: " + e.getMessage();
+            return "Excepción al descargar el archivo: " + e.getMessage();
         }
     }
 
@@ -100,6 +119,19 @@ public class RequestGet {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public long getFileSize(String url, Map<String, String> parameters) {
+        TypesChangers changer = new TypesChangers();
+        JSONObject responseJson = sendGetRequest(url, parameters);
+        if (responseJson != null && responseJson.has("size")) {
+            String sizeStr = responseJson.getString("size");
+            return changer.StringSizeToLong(sizeStr);
+        } else {
+            // Maneja el caso en que la respuesta no contenga el tamaño o haya un error
+            System.out.println("Error obteniendo el tamaño del archivo o la respuesta no contiene 'size'.");
+            return -1; // Retornar -1 o manejar de otra manera según la lógica de tu aplicación
         }
     }
 
