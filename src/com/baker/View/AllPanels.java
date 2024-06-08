@@ -19,6 +19,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +37,7 @@ import org.json.JSONObject;
 public class AllPanels extends javax.swing.JPanel {
 
     private int mouseX, mouseY;
-    private String domain = "http://127.0.0.1";
+    private String domain = "https://btools.me";
     //private String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
     private String apikey = "API-gDjlVTn76N2ZpbaE8yuoVSgoOwGnXCHJJa7vMQOp";
     Popups popup = new Popups();
@@ -60,7 +61,7 @@ public class AllPanels extends javax.swing.JPanel {
 
         //Set Text Area
         // Set size and location
-        setSize(709, 357);
+        setSize(709, 353);
         setLocation(0, 0);
 
         try {
@@ -468,7 +469,7 @@ public class AllPanels extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(modsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(modsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -477,7 +478,9 @@ public class AllPanels extends javax.swing.JPanel {
         Popups popup = new Popups();
         ZipManager zipmanager = new ZipManager();
         String appDataPath = System.getenv("APPDATA");
-
+        
+        System.out.println(appDataPath);
+        
         String zipFilePath = appDataPath + "/.minecraft-mod-installer/temp/mods.zip";
         String destDirectory = appDataPath + "/.minecraft/mods/";
 
@@ -491,6 +494,7 @@ public class AllPanels extends javax.swing.JPanel {
         );
 
         Long totalSize = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
+        
         DownloadWorker worker = new DownloadWorker(
                 "https://dl.dropboxusercontent.com/scl/fi/dziy8mc0i4j2mlkg7yuga/mods.zip?rlkey=ib087ifnyeifd6uo2lo06v9wl&st=au1t5vwm&dl=0",
                 zipFilePath,
@@ -500,10 +504,17 @@ public class AllPanels extends javax.swing.JPanel {
                 zipmanager, // Asegúrate de que esto esté correctamente inicializado
                 destDirectory
         );
+        
+        worker.setInstallMods(true);
         worker.execute();
+        
+        
+        
+
 
     }//GEN-LAST:event_downloadButtonMouseClicked
 
+    
     private void checkboxInstallModsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxInstallModsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkboxInstallModsActionPerformed
@@ -550,7 +561,8 @@ public class AllPanels extends javax.swing.JPanel {
             }
         }).start();
     }
-
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TESTetaLabel;

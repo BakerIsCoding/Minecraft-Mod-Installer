@@ -24,13 +24,13 @@
 package com.baker.utils;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
@@ -47,6 +47,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     private long totalFileSize;
     private ZipManager zipManager;
     private String destDirectory;
+    private boolean intallMods;
 
     public DownloadWorker(String downloadUrl, String downloadPath, JLabel speedLabel, JLabel etaLabel, long totalFileSize, ZipManager zipManager, String destDirectory) {
         this.downloadUrl = downloadUrl;
@@ -56,6 +57,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
         this.totalFileSize = totalFileSize;
         this.zipManager = zipManager;
         this.destDirectory = destDirectory;
+        this.intallMods = false;
     }
 
     @Override
@@ -97,12 +99,57 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
                     }
                 }
             }
+            Thread.sleep(100);
+            if(intallMods){
+                installMods();
+            }
+            
         } else {
             throw new IOException("Error en la descarga: Código de respuesta = " + responseCode);
         }
         return null;
     }
+    
+    
+    
+    public void installMods(){
+        
+        
+        File directory = new File(destDirectory);
+        if (directory.isDirectory()) {
+            String[] files = directory.list();
+            System.out.println("Archivos en el directorio:");
+            if(files.length > 0){
+                System.out.println("Ya hay mods, Borrando ...");
+                for(String file : files){
+                    
+                    String[] filetipe = file.split("\\.");
+                    if(filetipe[filetipe.length-1].equalsIgnoreCase("jar")){
+                        System.out.println("Se borro: "+file);
+                        new File(destDirectory+File.separator+file).delete();
+                    }
+                }
+                System.out.println("Limpieza completada");
+                
+            }
+            
+            zipManager.unzip(downloadPath, destDirectory);
+            
+            
+            new File(downloadPath).delete();
+            
 
+        } else {
+            System.out.println("No es un directorio válido.");
+        }
+        
+    }
+    
+    
+    public void setInstallMods(boolean x){
+        this.intallMods = x;
+    }
+    /*
     @Override
     protected void done() {
         try {
@@ -114,4 +161,5 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
             JOptionPane.showMessageDialog(null, "Error durante la descarga o descompresión: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+*/
 }
