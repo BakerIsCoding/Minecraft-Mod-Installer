@@ -255,7 +255,7 @@ public class LoginScreen extends javax.swing.JPanel {
                 JFrame allPanelsFrame = new JFrame("All Panels");
 
                 allPanelsFrame.add(allpanels, BorderLayout.CENTER);
-                allPanelsFrame.setSize(880, 400);
+                allPanelsFrame.setSize(709, 357);
                 allPanelsFrame.setLocationRelativeTo(null);
                 allPanelsFrame.setVisible(true);
 

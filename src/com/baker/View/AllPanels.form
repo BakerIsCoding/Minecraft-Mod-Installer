@@ -24,7 +24,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
               <Component id="modsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -48,41 +48,39 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="titleAll" alignment="0" max="32767" attributes="0"/>
-                              <Component id="separator1" alignment="0" pref="839" max="32767" attributes="0"/>
+                              <Component id="separator1" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="checkboxInstallMods" max="32767" attributes="0"/>
-                                      <Component id="checkboxDecompress" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="titleMods" max="32767" attributes="0"/>
-                              <Component id="titleShaders1" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="separator2" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="checkboxOpcionesAvanzadas" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="titleMods" min="-2" pref="176" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="separator11" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="titleShaders1" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="checkboxOpcionesAvanzadas" pref="176" max="32767" attributes="0"/>
+                                              <Component id="separator11" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="checkboxDecompress" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="separator2" max="32767" attributes="0"/>
+                                      <Component id="checkboxInstallMods" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="titleConfigs" alignment="1" max="32767" attributes="0"/>
-                              <Component id="separator4" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="separator9" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Component id="titleConfigs" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="separator4" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="graphicSetLow" min="-2" max="-2" attributes="0"/>
@@ -102,16 +100,10 @@
                                                       <Component id="separator7" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <Component id="checkboxInstallShaders" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="titleShaders" pref="150" max="32767" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                                              </Group>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="subtitleTecla" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="checkboxPushToTalk" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="separator8" max="32767" attributes="0"/>
                                               <Component id="titleVoiceChat" alignment="0" max="32767" attributes="0"/>
                                               <Component id="textfieldKeybind" alignment="0" pref="154" max="32767" attributes="0"/>
@@ -120,24 +112,18 @@
                                                   <Component id="buttonChangeKeybind" min="-2" pref="114" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="separator10" min="-2" pref="191" max="-2" attributes="0"/>
-                                      <Component id="titleMinecraftConfig" min="-2" pref="191" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="comboboxInterfaceSize" max="32767" attributes="0"/>
-                                              <Component id="titleRenderDistance" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="comboboxRenderDistance" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="titleInterfaceSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="titleFPSMAX" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="comboboxFPSMax" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="titleShaders" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <Component id="separator9" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <Component id="checkboxInstallShaders" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -177,14 +163,9 @@
                                       <Component id="titleDistantHorizons" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="titleFancymenu" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="titleVoiceChat" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="titleMinecraftConfig" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="separator5" min="-2" pref="7" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="separator10" min="-2" pref="7" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="separator7" min="-2" pref="7" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -201,75 +182,48 @@
                   </Group>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
-                                  <Component id="titleInterfaceSize" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="comboboxInterfaceSize" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="titleRenderDistance" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="comboboxRenderDistance" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="titleFPSMAX" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="comboboxFPSMax" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="checkboxInstallFancy" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="checkboxPushToTalk" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="checkboxInstallFancy" min="-2" max="-2" attributes="0"/>
                               <Component id="graphicSetLow" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="subtitleTecla" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textfieldKeybind" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="buttonChangeKeybind" min="-2" pref="23" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="graphicSetMid" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="graphicSetHigh" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="titleShaders" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                          <Component id="separator9" min="-2" pref="7" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="checkboxInstallShaders" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="checkboxOpcionesAvanzadas" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="titleShaders1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                          <Component id="separator11" min="-2" pref="7" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
+                          <Component id="graphicSetMid" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="graphicSetHigh" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="subtitleTecla" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="textfieldKeybind" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buttonChangeKeybind" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="titleShaders" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="separator9" min="-2" pref="7" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="checkboxInstallShaders" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="titleShaders1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="separator11" min="-2" pref="7" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="checkboxOpcionesAvanzadas" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="downloadButton" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="TESTetaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TESTspeedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -466,95 +420,9 @@
             <Property name="text" type="java.lang.String" value="Cambiar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="checkboxPushToTalk">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Pulsar para hablar"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="subtitleTecla">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tecla:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="titleMinecraftConfig">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n de Minecraft"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JSeparator" name="separator10">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="b8" green="d8" red="9b" type="rgb"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="titleRenderDistance">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Distancia de renderizado:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="comboboxRenderDistance">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="8">
-                <StringItem index="0" value="4 Chunks"/>
-                <StringItem index="1" value="6 Chunks"/>
-                <StringItem index="2" value="8 Chunks"/>
-                <StringItem index="3" value="10 Chunks"/>
-                <StringItem index="4" value="12 Chunks"/>
-                <StringItem index="5" value="14 Chunks"/>
-                <StringItem index="6" value="16 Chunks"/>
-                <StringItem index="7" value="18 Chunks"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="titleInterfaceSize">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Escala de la interfaz:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="comboboxInterfaceSize">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Bajo"/>
-                <StringItem index="1" value="Mediano"/>
-                <StringItem index="2" value="Alto"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="comboboxFPSMax">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
-                <StringItem index="0" value="30"/>
-                <StringItem index="1" value="60"/>
-                <StringItem index="2" value="120"/>
-                <StringItem index="3" value="150"/>
-                <StringItem index="4" value="240"/>
-                <StringItem index="5" value=" "/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="titleFPSMAX">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="FPS M&#xe1;ximos:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkboxOpcionesAvanzadas">

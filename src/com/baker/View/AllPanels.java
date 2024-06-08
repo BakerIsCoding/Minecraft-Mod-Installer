@@ -60,7 +60,7 @@ public class AllPanels extends javax.swing.JPanel {
 
         //Set Text Area
         // Set size and location
-        setSize(750, 460);
+        setSize(709, 357);
         setLocation(0, 0);
 
         try {
@@ -188,16 +188,7 @@ public class AllPanels extends javax.swing.JPanel {
         checkboxInstallShaders = new javax.swing.JCheckBox();
         textfieldKeybind = new javax.swing.JTextField();
         buttonChangeKeybind = new javax.swing.JButton();
-        checkboxPushToTalk = new javax.swing.JCheckBox();
         subtitleTecla = new javax.swing.JLabel();
-        titleMinecraftConfig = new javax.swing.JLabel();
-        separator10 = new javax.swing.JSeparator();
-        titleRenderDistance = new javax.swing.JLabel();
-        comboboxRenderDistance = new javax.swing.JComboBox<>();
-        titleInterfaceSize = new javax.swing.JLabel();
-        comboboxInterfaceSize = new javax.swing.JComboBox<>();
-        comboboxFPSMax = new javax.swing.JComboBox<>();
-        titleFPSMAX = new javax.swing.JLabel();
         checkboxOpcionesAvanzadas = new javax.swing.JCheckBox();
         titleShaders1 = new javax.swing.JLabel();
         separator11 = new javax.swing.JSeparator();
@@ -305,27 +296,7 @@ public class AllPanels extends javax.swing.JPanel {
 
         buttonChangeKeybind.setText("Cambiar");
 
-        checkboxPushToTalk.setText("Pulsar para hablar");
-
         subtitleTecla.setText("Tecla:");
-
-        titleMinecraftConfig.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        titleMinecraftConfig.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleMinecraftConfig.setText("Configuración de Minecraft");
-
-        separator10.setForeground(new java.awt.Color(155, 216, 184));
-
-        titleRenderDistance.setText("Distancia de renderizado:");
-
-        comboboxRenderDistance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4 Chunks", "6 Chunks", "8 Chunks", "10 Chunks", "12 Chunks", "14 Chunks", "16 Chunks", "18 Chunks" }));
-
-        titleInterfaceSize.setText("Escala de la interfaz:");
-
-        comboboxInterfaceSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bajo", "Mediano", "Alto" }));
-
-        comboboxFPSMax.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "30", "60", "120", "150", "240", " " }));
-
-        titleFPSMAX.setText("FPS Máximos:");
 
         checkboxOpcionesAvanzadas.setText("Habilitar");
         checkboxOpcionesAvanzadas.addActionListener(new java.awt.event.ActionListener() {
@@ -350,32 +321,30 @@ public class AllPanels extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(titleAll, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(separator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)))
+                            .addComponent(separator1, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modsPanelLayout.createSequentialGroup()
                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modsPanelLayout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(checkboxInstallMods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(checkboxDecompress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(titleMods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(titleShaders1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modsPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(separator2))
                             .addGroup(modsPanelLayout.createSequentialGroup()
-                                .addComponent(checkboxOpcionesAvanzadas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(titleMods, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modsPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(separator11)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titleConfigs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(separator4)
                             .addGroup(modsPanelLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(separator9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(titleShaders1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(modsPanelLayout.createSequentialGroup()
+                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(checkboxOpcionesAvanzadas, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                            .addComponent(separator11))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(checkboxDecompress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(separator2)
+                                    .addComponent(checkboxInstallMods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(modsPanelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(titleConfigs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(separator4)
                                     .addGroup(modsPanelLayout.createSequentialGroup()
                                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(modsPanelLayout.createSequentialGroup()
@@ -391,34 +360,24 @@ public class AllPanels extends javax.swing.JPanel {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(titleFancymenu, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                                                    .addComponent(separator7)))
-                                            .addComponent(checkboxInstallShaders)
-                                            .addGroup(modsPanelLayout.createSequentialGroup()
-                                                .addComponent(titleShaders, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                                .addGap(132, 132, 132)))
+                                                    .addComponent(separator7))))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(subtitleTecla)
-                                            .addComponent(checkboxPushToTalk)
                                             .addComponent(separator8)
                                             .addComponent(titleVoiceChat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(textfieldKeybind, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                                             .addGroup(modsPanelLayout.createSequentialGroup()
                                                 .addGap(21, 21, 21)
-                                                .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(modsPanelLayout.createSequentialGroup()
+                                .addGap(176, 176, 176)
                                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(separator10, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(titleMinecraftConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(modsPanelLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(comboboxInterfaceSize, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(titleRenderDistance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(comboboxRenderDistance, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(titleInterfaceSize)
-                                            .addComponent(titleFPSMAX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(comboboxFPSMax, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                    .addComponent(titleShaders, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(separator9, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(checkboxInstallShaders))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(44, 44, 44))
             .addGroup(modsPanelLayout.createSequentialGroup()
                 .addContainerGap()
@@ -449,13 +408,9 @@ public class AllPanels extends javax.swing.JPanel {
                                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(titleDistantHorizons)
                                     .addComponent(titleFancymenu)
-                                    .addComponent(titleVoiceChat)
-                                    .addComponent(titleMinecraftConfig))
-                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(titleVoiceChat))
+                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(separator5, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modsPanelLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(separator10, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(separator7, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(separator8, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(modsPanelLayout.createSequentialGroup()
@@ -468,57 +423,38 @@ public class AllPanels extends javax.swing.JPanel {
                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(modsPanelLayout.createSequentialGroup()
                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(modsPanelLayout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(titleInterfaceSize)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboboxInterfaceSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(modsPanelLayout.createSequentialGroup()
-                                .addComponent(titleRenderDistance)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboboxRenderDistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(titleFPSMAX)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboboxFPSMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(modsPanelLayout.createSequentialGroup()
-                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(checkboxInstallFancy)
-                                .addComponent(checkboxPushToTalk))
+                            .addComponent(checkboxInstallFancy)
                             .addComponent(graphicSetLow))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(modsPanelLayout.createSequentialGroup()
-                                .addComponent(subtitleTecla)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textfieldKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(modsPanelLayout.createSequentialGroup()
-                                .addComponent(graphicSetMid)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(graphicSetHigh)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(modsPanelLayout.createSequentialGroup()
-                                        .addComponent(titleShaders)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(separator9, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(checkboxInstallShaders)
-                                            .addComponent(checkboxOpcionesAvanzadas)))
-                                    .addGroup(modsPanelLayout.createSequentialGroup()
-                                        .addComponent(titleShaders1)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(separator11, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addGap(25, 25, 25)
+                        .addComponent(graphicSetMid)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(graphicSetHigh))
+                    .addGroup(modsPanelLayout.createSequentialGroup()
+                        .addComponent(subtitleTecla)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textfieldKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(modsPanelLayout.createSequentialGroup()
+                        .addComponent(titleShaders)
+                        .addGap(0, 0, 0)
+                        .addComponent(separator9, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(checkboxInstallShaders))
+                    .addGroup(modsPanelLayout.createSequentialGroup()
+                        .addComponent(titleShaders1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(separator11, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkboxOpcionesAvanzadas)))
+                .addGap(28, 28, 28)
                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(downloadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TESTetaLabel)
                     .addComponent(TESTspeedLabel))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -526,7 +462,7 @@ public class AllPanels extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(modsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -625,10 +561,6 @@ public class AllPanels extends javax.swing.JPanel {
     private javax.swing.JCheckBox checkboxInstallMods;
     private javax.swing.JCheckBox checkboxInstallShaders;
     private javax.swing.JCheckBox checkboxOpcionesAvanzadas;
-    private javax.swing.JCheckBox checkboxPushToTalk;
-    private javax.swing.JComboBox<String> comboboxFPSMax;
-    private javax.swing.JComboBox<String> comboboxInterfaceSize;
-    private javax.swing.JComboBox<String> comboboxRenderDistance;
     private javax.swing.JButton downloadButton;
     private javax.swing.ButtonGroup graphicBtnGroup;
     private javax.swing.JRadioButton graphicSetHigh;
@@ -636,7 +568,6 @@ public class AllPanels extends javax.swing.JPanel {
     private javax.swing.JRadioButton graphicSetMid;
     private javax.swing.JPanel modsPanel;
     private javax.swing.JSeparator separator1;
-    private javax.swing.JSeparator separator10;
     private javax.swing.JSeparator separator11;
     private javax.swing.JSeparator separator2;
     private javax.swing.JSeparator separator4;
@@ -649,12 +580,8 @@ public class AllPanels extends javax.swing.JPanel {
     private javax.swing.JLabel titleAll;
     private javax.swing.JLabel titleConfigs;
     private javax.swing.JLabel titleDistantHorizons;
-    private javax.swing.JLabel titleFPSMAX;
     private javax.swing.JLabel titleFancymenu;
-    private javax.swing.JLabel titleInterfaceSize;
-    private javax.swing.JLabel titleMinecraftConfig;
     private javax.swing.JLabel titleMods;
-    private javax.swing.JLabel titleRenderDistance;
     private javax.swing.JLabel titleShaders;
     private javax.swing.JLabel titleShaders1;
     private javax.swing.JLabel titleVoiceChat;
