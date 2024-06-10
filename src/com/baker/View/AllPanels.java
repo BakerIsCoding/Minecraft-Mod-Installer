@@ -505,7 +505,8 @@ public class AllPanels extends javax.swing.JPanel {
                 destDirectory
         );
         
-        worker.setInstallMods(true);
+        worker.setInstallMods(checkboxInstallMods.isSelected());
+        worker.setRemovelZip(true);
         worker.execute();
         
         

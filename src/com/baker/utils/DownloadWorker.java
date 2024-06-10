@@ -47,7 +47,11 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     private long totalFileSize;
     private ZipManager zipManager;
     private String destDirectory;
+    
+    //Conditions installation
     private boolean intallMods;
+    private boolean removeZip;
+    
 
     public DownloadWorker(String downloadUrl, String downloadPath, JLabel speedLabel, JLabel etaLabel, long totalFileSize, ZipManager zipManager, String destDirectory) {
         this.downloadUrl = downloadUrl;
@@ -58,6 +62,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
         this.zipManager = zipManager;
         this.destDirectory = destDirectory;
         this.intallMods = false;
+        this.removeZip = false;
     }
 
     @Override
@@ -114,7 +119,6 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     
     public void installMods(){
         
-        
         File directory = new File(destDirectory);
         if (directory.isDirectory()) {
             String[] files = directory.list();
@@ -135,8 +139,11 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
             
             zipManager.unzip(downloadPath, destDirectory);
             
+            if(removeZip){
+                new File(downloadPath).delete();
+                System.out.println("Zip Deleted");
+            }
             
-            new File(downloadPath).delete();
             
 
         } else {
@@ -148,6 +155,10 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     
     public void setInstallMods(boolean x){
         this.intallMods = x;
+    }
+    
+    public void setRemovelZip(boolean x){
+        this.removeZip = x;
     }
     /*
     @Override
