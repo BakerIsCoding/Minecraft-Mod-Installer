@@ -37,9 +37,12 @@ import org.json.JSONObject;
 public class AllPanels extends javax.swing.JPanel {
 
     private int mouseX, mouseY;
-    public static final String domain = "https://btools.me";
-    public static final String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
-    //public static String apikey = "API-gDjlVTn76N2ZpbaE8yuoVSgoOwGnXCHJJa7vMQOp";
+    //Web
+    //public static final String domain = "https://btools.me";
+    //public static final String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
+    //Local
+    public static final String domain = "http://127.0.0.1";
+    public static String apikey = "API-gDjlVTn76N2ZpbaE8yuoVSgoOwGnXCHJJa7vMQOp";
     Popups popup = new Popups();
     HardwareInfoGetter hardware = new HardwareInfoGetter();
 
@@ -317,7 +320,7 @@ public class AllPanels extends javax.swing.JPanel {
         modsPanelLayout.setHorizontalGroup(
             modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modsPanelLayout.createSequentialGroup()
-                .addGap(280, 280, 280)
+                .addGap(273, 273, 273)
                 .addComponent(etaLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(modsPanelLayout.createSequentialGroup()
@@ -387,7 +390,7 @@ public class AllPanels extends javax.swing.JPanel {
                                                 .addGap(21, 21, 21)
                                                 .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(modsPanelLayout.createSequentialGroup()
-                                        .addGap(80, 80, 80)
+                                        .addGap(73, 73, 73)
                                         .addComponent(speedLabel)))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(downloadButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -485,9 +488,9 @@ public class AllPanels extends javax.swing.JPanel {
         Popups popup = new Popups();
         ZipManager zipmanager = new ZipManager();
         String appDataPath = System.getenv("APPDATA");
-        
+
         System.out.println(appDataPath);
-        
+
         String zipFilePath = appDataPath + "/.minecraft-mod-installer/temp/mods.zip";
         String destDirectory = appDataPath + "/.minecraft/mods/";
 
@@ -500,29 +503,32 @@ public class AllPanels extends javax.swing.JPanel {
                 "getfilesize", "pleasegivemethefilesize"
         );
 
+        Map<String, String> parametersDownload = Map.of(
+                "apikey", apikey,
+                "modlink", "pleasegivemethedownloadlink"
+        );
+
         Long totalSize = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
-        
+        String modsUrl = rget.getDownloadLink(domain + "/api/minecraft/getmods.php", parametersDownload);
+
         DownloadWorker worker = new DownloadWorker(
-                "https://dl.dropboxusercontent.com/scl/fi/dziy8mc0i4j2mlkg7yuga/mods.zip?rlkey=ib087ifnyeifd6uo2lo06v9wl&st=au1t5vwm&dl=0",
+                modsUrl,
                 zipFilePath,
                 speedLabel,
                 etaLabel,
                 totalSize,
-                zipmanager, // Asegúrate de que esto esté correctamente inicializado
+                zipmanager,
                 destDirectory
         );
-        
+
         worker.setInstallMods(checkboxInstallMods.isSelected());
         worker.setRemovelZip(true);
         worker.execute();
-        
-        
-        
 
 
     }//GEN-LAST:event_downloadButtonMouseClicked
 
-    
+
     private void checkboxInstallModsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxInstallModsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkboxInstallModsActionPerformed
@@ -569,8 +575,7 @@ public class AllPanels extends javax.swing.JPanel {
             }
         }).start();
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonChangeKeybind;

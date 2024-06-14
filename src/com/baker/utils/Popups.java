@@ -41,8 +41,6 @@ public class Popups {
     public void youtubePopup(String title, String message, String url) {
         final JOptionPane pane = new JOptionPane(message, JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION);
 
-        
-
         JDialog dialog = pane.createDialog(null, title);
 
         JButton button = new JButton("Ver Tutorial");
@@ -50,20 +48,20 @@ public class Popups {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Desktop.getDesktop().browse(new URI(url));
-                    dialog.dispose(); 
+                    dialog.dispose();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "No se pudo abrir el enlace", "Error", JOptionPane.ERROR_MESSAGE);
-                    dialog.dispose(); 
+                    dialog.dispose();
                 }
             }
         });
-        
+
         JButton buttonClose = new JButton("Cerrar");
         pane.setOptions(new Object[]{buttonClose});
-        
+
         buttonClose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dialog.dispose(); 
+                dialog.dispose();
             }
         });
 

@@ -28,8 +28,6 @@ import org.json.JSONObject;
  */
 public class RequestGet {
 
-    
-
     public String downloadFromUrl(String downloadUrl, String downloadPath, JLabel speedLabel, JLabel etaLabel, long totalFileSize) {
         try {
             URL url = new URL(downloadUrl);
@@ -118,6 +116,17 @@ public class RequestGet {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getDownloadLink(String url, Map<String, String> parameters) {
+        JSONObject jsonResponse = sendGetRequest(url, parameters);
+
+        if (jsonResponse != null && jsonResponse.optBoolean("success")) {
+            return jsonResponse.optString("link");
+        } else {
+            System.err.println("Error: La respuesta no contiene 'success' o 'link'");
             return null;
         }
     }
