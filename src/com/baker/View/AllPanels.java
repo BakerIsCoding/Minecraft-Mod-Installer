@@ -37,9 +37,9 @@ import org.json.JSONObject;
 public class AllPanels extends javax.swing.JPanel {
 
     private int mouseX, mouseY;
-    private String domain = "https://btools.me";
-    //private String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
-    private String apikey = "API-gDjlVTn76N2ZpbaE8yuoVSgoOwGnXCHJJa7vMQOp";
+    public static final String domain = "https://btools.me";
+    public static final String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
+    //public static String apikey = "API-gDjlVTn76N2ZpbaE8yuoVSgoOwGnXCHJJa7vMQOp";
     Popups popup = new Popups();
     HardwareInfoGetter hardware = new HardwareInfoGetter();
 
@@ -105,7 +105,7 @@ public class AllPanels extends javax.swing.JPanel {
     }
 
     public void updateSpeed(double speed) {
-        SwingUtilities.invokeLater(() -> TESTspeedLabel.setText("Velocidad: " + speed + " MB/s"));
+        SwingUtilities.invokeLater(() -> speedLabel.setText("Velocidad: " + speed + " MB/s"));
     }
 
     private void setDefaultInfo() {
@@ -179,8 +179,8 @@ public class AllPanels extends javax.swing.JPanel {
         titleFancymenu = new javax.swing.JLabel();
         checkboxInstallFancy = new javax.swing.JCheckBox();
         titleAll = new javax.swing.JLabel();
-        TESTspeedLabel = new javax.swing.JLabel();
-        TESTetaLabel = new javax.swing.JLabel();
+        speedLabel = new javax.swing.JLabel();
+        etaLabel = new javax.swing.JLabel();
         separator7 = new javax.swing.JSeparator();
         titleVoiceChat = new javax.swing.JLabel();
         separator8 = new javax.swing.JSeparator();
@@ -267,9 +267,9 @@ public class AllPanels extends javax.swing.JPanel {
         titleAll.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleAll.setText("Mod Downloader");
 
-        TESTspeedLabel.setText("SPEED");
+        speedLabel.setText("SPEED (ELMINAR TEXTO)");
 
-        TESTetaLabel.setText("ETA");
+        etaLabel.setText("ETA (ELIMINAR TEXTO)");
 
         separator7.setForeground(new java.awt.Color(155, 216, 184));
 
@@ -317,35 +317,50 @@ public class AllPanels extends javax.swing.JPanel {
         modsPanelLayout.setHorizontalGroup(
             modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modsPanelLayout.createSequentialGroup()
-                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modsPanelLayout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(etaLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(modsPanelLayout.createSequentialGroup()
+                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(modsPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(titleAll, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(separator1, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modsPanelLayout.createSequentialGroup()
+                    .addGroup(modsPanelLayout.createSequentialGroup()
                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(modsPanelLayout.createSequentialGroup()
-                                .addComponent(titleMods, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(modsPanelLayout.createSequentialGroup()
+                                        .addComponent(titleMods, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 6, Short.MAX_VALUE))
+                                    .addGroup(modsPanelLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(titleShaders1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(modsPanelLayout.createSequentialGroup()
+                                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(checkboxOpcionesAvanzadas, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                                    .addComponent(separator11))
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(checkboxDecompress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(separator2)
+                                            .addComponent(checkboxInstallMods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(18, 18, 18))
                             .addGroup(modsPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(titleShaders1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(modsPanelLayout.createSequentialGroup()
-                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(checkboxOpcionesAvanzadas, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                            .addComponent(separator11))
+                                        .addComponent(checkboxInstallShaders)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(checkboxDecompress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(separator2)
-                                    .addComponent(checkboxInstallMods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(titleShaders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(separator9))
+                                .addGap(18, 18, 18)))
                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titleConfigs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(separator4)
                             .addGroup(modsPanelLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(titleConfigs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(separator4)
                                     .addGroup(modsPanelLayout.createSequentialGroup()
                                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(modsPanelLayout.createSequentialGroup()
@@ -355,9 +370,9 @@ public class AllPanels extends javax.swing.JPanel {
                                             .addComponent(graphicSetMid, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(modsPanelLayout.createSequentialGroup()
                                                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(graphicSetHigh, javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(separator5, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(titleDistantHorizons, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                                                    .addComponent(titleDistantHorizons, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                                    .addComponent(graphicSetHigh, javax.swing.GroupLayout.Alignment.LEADING))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(titleFancymenu, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
@@ -370,24 +385,13 @@ public class AllPanels extends javax.swing.JPanel {
                                             .addComponent(textfieldKeybind, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                                             .addGroup(modsPanelLayout.createSequentialGroup()
                                                 .addGap(21, 21, 21)
-                                                .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(modsPanelLayout.createSequentialGroup()
-                                .addGap(176, 176, 176)
-                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(titleShaders, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(separator9, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkboxInstallShaders))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                                .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(modsPanelLayout.createSequentialGroup()
+                                        .addGap(80, 80, 80)
+                                        .addComponent(speedLabel)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(downloadButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
-            .addGroup(modsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(TESTetaLabel)
-                .addGap(88, 88, 88)
-                .addComponent(TESTspeedLabel)
-                .addGap(86, 86, 86)
-                .addComponent(downloadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         modsPanelLayout.setVerticalGroup(
             modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,7 +424,6 @@ public class AllPanels extends javax.swing.JPanel {
                         .addComponent(checkboxDecompress)
                         .addGap(0, 0, 0)
                         .addComponent(checkboxInstallMods)))
-                .addGap(0, 0, 0)
                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(modsPanelLayout.createSequentialGroup()
                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,27 +438,31 @@ public class AllPanels extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textfieldKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(modsPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(titleShaders)
                         .addGap(0, 0, 0)
                         .addComponent(separator9, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(checkboxInstallShaders))
+                        .addComponent(checkboxInstallShaders)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(modsPanelLayout.createSequentialGroup()
                         .addComponent(titleShaders1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(separator11, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkboxOpcionesAvanzadas)))
-                .addGap(28, 28, 28)
-                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(downloadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TESTetaLabel)
-                    .addComponent(TESTspeedLabel))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(checkboxOpcionesAvanzadas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 42, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modsPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(speedLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(etaLabel)
+                        .addGap(6, 6, 6)))
+                .addComponent(downloadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -498,8 +505,8 @@ public class AllPanels extends javax.swing.JPanel {
         DownloadWorker worker = new DownloadWorker(
                 "https://dl.dropboxusercontent.com/scl/fi/dziy8mc0i4j2mlkg7yuga/mods.zip?rlkey=ib087ifnyeifd6uo2lo06v9wl&st=au1t5vwm&dl=0",
                 zipFilePath,
-                TESTspeedLabel,
-                TESTetaLabel,
+                speedLabel,
+                etaLabel,
                 totalSize,
                 zipmanager, // Asegúrate de que esto esté correctamente inicializado
                 destDirectory
@@ -566,8 +573,6 @@ public class AllPanels extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel TESTetaLabel;
-    private javax.swing.JLabel TESTspeedLabel;
     private javax.swing.JButton buttonChangeKeybind;
     private javax.swing.JCheckBox checkboxDecompress;
     private javax.swing.JCheckBox checkboxInstallFancy;
@@ -575,6 +580,7 @@ public class AllPanels extends javax.swing.JPanel {
     private javax.swing.JCheckBox checkboxInstallShaders;
     private javax.swing.JCheckBox checkboxOpcionesAvanzadas;
     private javax.swing.JButton downloadButton;
+    private javax.swing.JLabel etaLabel;
     private javax.swing.ButtonGroup graphicBtnGroup;
     private javax.swing.JRadioButton graphicSetHigh;
     private javax.swing.JRadioButton graphicSetLow;
@@ -588,6 +594,7 @@ public class AllPanels extends javax.swing.JPanel {
     private javax.swing.JSeparator separator7;
     private javax.swing.JSeparator separator8;
     private javax.swing.JSeparator separator9;
+    private javax.swing.JLabel speedLabel;
     private javax.swing.JLabel subtitleTecla;
     private javax.swing.JTextField textfieldKeybind;
     private javax.swing.JLabel titleAll;

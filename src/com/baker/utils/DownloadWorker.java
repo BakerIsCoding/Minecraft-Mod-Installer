@@ -97,7 +97,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
 
                         SwingUtilities.invokeLater(() -> {
                             speedLabel.setText("Velocidad: " + speedRounded + " MB/s");
-                            etaLabel.setText("ETA: " + eta + " s");
+                            etaLabel.setText("Tiempo estimado: " + eta + " s");
                         });
 
                         lastUpdateTime = currentTime;  // Actualiza el tiempo de la última actualización

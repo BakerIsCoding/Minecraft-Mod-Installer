@@ -7,6 +7,8 @@ package com.baker.View;
 import com.baker.Requests.DownloadFile;
 import com.baker.Requests.RequestGet;
 import com.baker.Requests.RequestPost;
+import static com.baker.View.AllPanels.apikey;
+import static com.baker.View.AllPanels.domain;
 import com.baker.simpleExceptions.SimpleException;
 import com.baker.utils.FileFolderManager;
 import com.baker.utils.HardwareInfoGetter;
@@ -54,7 +56,7 @@ public class LoginScreen extends javax.swing.JPanel {
         this.parentFrame = frame;
 
         initComponents();
-        chargeEventsCustom();   
+        chargeEventsCustom();
 
         Boolean credsFileExists = ffm.isCredsFileExisting();
         if (credsFileExists) {
@@ -209,8 +211,8 @@ public class LoginScreen extends javax.swing.JPanel {
         buttonAction();
     }//GEN-LAST:event_submitButtonMouseClicked
 
-    private void chargeEventsCustom(){
-        
+    private void chargeEventsCustom() {
+
         passwordField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -219,16 +221,14 @@ public class LoginScreen extends javax.swing.JPanel {
                 }
             }
         });
-        
+
     }
-    
-    private void buttonAction(){
+
+    private void buttonAction() {
         Popups popup = new Popups();
 
         String username = usernameField.getText();
         String password = passwordField.getText();
-        String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
-
         RequestGet requestGet = new RequestGet();
 
         Map<String, String> parameters = Map.of(
@@ -237,8 +237,7 @@ public class LoginScreen extends javax.swing.JPanel {
                 "apikey", apikey
         );
 
-        JSONObject response = requestGet.sendGetRequest("https://btools.me/api/minecraft/login.php", parameters);
-
+        JSONObject response = requestGet.sendGetRequest(domain + "/api/minecraft/login.php", parameters);
         if (response != null) {
             if (!response.getBoolean("success")) {
                 popup.errorPopup("Error al iniciar sesión", response.getString("message"));
@@ -255,7 +254,7 @@ public class LoginScreen extends javax.swing.JPanel {
                 JFrame allPanelsFrame = new JFrame("All Panels");
 
                 allPanelsFrame.add(allpanels, BorderLayout.CENTER);
-                allPanelsFrame.setSize(709, 400);
+                allPanelsFrame.setSize(675, 400);
                 allPanelsFrame.setResizable(false);
                 allPanelsFrame.setLocationRelativeTo(null);
                 allPanelsFrame.setVisible(true);
