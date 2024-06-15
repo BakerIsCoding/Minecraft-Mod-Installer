@@ -4,31 +4,17 @@
  */
 package com.baker.View;
 
-import com.baker.Requests.DownloadFile;
 import com.baker.Requests.RequestGet;
-import com.baker.Requests.RequestPost;
 import com.baker.simpleExceptions.SimpleException;
 import com.baker.utils.DownloadWorker;
-import com.baker.utils.FileFolderManager;
 import com.baker.utils.HardwareInfoGetter;
 import com.baker.utils.Popups;
-import com.baker.utils.TypesChangers;
 import com.baker.utils.ZipManager;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.Popup;
 import javax.swing.SwingUtilities;
-import javax.swing.plaf.basic.BasicFileChooserUI;
-import org.json.JSONObject;
 
 /**
  *
@@ -206,8 +192,8 @@ public class AllPanels extends javax.swing.JPanel {
 
         downloadButton.setText("Iniciar Descargas");
         downloadButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                downloadButtonMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                downloadButtonMousePressed(evt);
             }
         });
 
@@ -316,7 +302,7 @@ public class AllPanels extends javax.swing.JPanel {
 
         separator11.setForeground(new java.awt.Color(155, 216, 184));
 
-        descargaLabel.setText("Tamaño estimado: 1111");
+        descargaLabel.setText("Tamaño estimado: 0");
 
         javax.swing.GroupLayout modsPanelLayout = new javax.swing.GroupLayout(modsPanel);
         modsPanel.setLayout(modsPanelLayout);
@@ -487,51 +473,6 @@ public class AllPanels extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void downloadButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_downloadButtonMouseClicked
-        RequestGet rget = new RequestGet();
-        Popups popup = new Popups();
-        ZipManager zipmanager = new ZipManager();
-        String appDataPath = System.getenv("APPDATA");
-
-        System.out.println(appDataPath);
-
-        String zipFilePath = appDataPath + "/.minecraft-mod-installer/temp/mods.zip";
-        String destDirectory = appDataPath + "/.minecraft/mods/";
-
-        Map<String, String> parametersApi = Map.of(
-                "apikey", apikey
-        );
-
-        Map<String, String> parametersSize = Map.of(
-                "apikey", apikey,
-                "getfilesize", "pleasegivemethefilesize"
-        );
-
-        Map<String, String> parametersDownload = Map.of(
-                "apikey", apikey,
-                "modlink", "pleasegivemethedownloadlink"
-        );
-
-        Long totalSize = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
-        String modsUrl = rget.getDownloadLink(domain + "/api/minecraft/getmods.php", parametersDownload);
-
-        DownloadWorker worker = new DownloadWorker(
-                modsUrl,
-                zipFilePath,
-                speedLabel,
-                etaLabel,
-                totalSize,
-                zipmanager,
-                destDirectory
-        );
-
-        worker.setInstallMods(checkboxInstallMods.isSelected());
-        worker.setRemovelZip(true);
-        worker.execute();
-
-
-    }//GEN-LAST:event_downloadButtonMouseClicked
-
 
     private void checkboxInstallModsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxInstallModsActionPerformed
         // TODO add your handling code here:
@@ -556,6 +497,54 @@ public class AllPanels extends javax.swing.JPanel {
     private void checkboxOpcionesAvanzadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxOpcionesAvanzadasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkboxOpcionesAvanzadasActionPerformed
+
+    private void downloadButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_downloadButtonMousePressed
+        
+        downloadButton.setEnabled(false);
+
+        RequestGet rget = new RequestGet();
+        Popups popup = new Popups();
+        ZipManager zipmanager = new ZipManager();
+        String appDataPath = System.getenv("APPDATA");
+
+        System.out.println(appDataPath);
+
+        String zipFilePath = appDataPath + "/.minecraft-mod-installer/temp/mods.zip";
+        String destDirectory = appDataPath + "/.minecraft/mods/";
+
+        Map<String, String> parametersApi = Map.of(
+            "apikey", apikey
+        );
+
+        Map<String, String> parametersSize = Map.of(
+            "apikey", apikey,
+            "getfilesize", "pleasegivemethefilesize"
+        );
+
+        Map<String, String> parametersDownload = Map.of(
+            "apikey", apikey,
+            "modlink", "pleasegivemethedownloadlink"
+        );
+
+        Long totalSize = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
+        String modsUrl = rget.getDownloadLink(domain + "/api/minecraft/getmods.php", parametersDownload);
+
+        DownloadWorker worker = new DownloadWorker(
+            modsUrl,
+            zipFilePath,
+            speedLabel,
+            etaLabel,
+            totalSize,
+            zipmanager,
+            destDirectory,
+            downloadButton
+        );
+
+        worker.setInstallMods(checkboxInstallMods.isSelected());
+        worker.setRemovelZip(true);
+        worker.execute();
+        
+    }//GEN-LAST:event_downloadButtonMousePressed
     public void startDownload(String fileUrl) {
         new Thread(() -> {
             try {
@@ -578,6 +567,11 @@ public class AllPanels extends javax.swing.JPanel {
                 e.printStackTrace();
             }
         }).start();
+    }
+    
+    
+    public void enableDowloadButton(){
+        downloadButton.setEnabled(true);
     }
 
 

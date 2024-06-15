@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
@@ -47,13 +48,15 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     private long totalFileSize;
     private ZipManager zipManager;
     private String destDirectory;
+    private JButton finalButton;
+    
     
     //Conditions installation
     private boolean intallMods;
     private boolean removeZip;
     
 
-    public DownloadWorker(String downloadUrl, String downloadPath, JLabel speedLabel, JLabel etaLabel, long totalFileSize, ZipManager zipManager, String destDirectory) {
+    public DownloadWorker(String downloadUrl, String downloadPath, JLabel speedLabel, JLabel etaLabel, long totalFileSize, ZipManager zipManager, String destDirectory, JButton finalButton) {
         this.downloadUrl = downloadUrl;
         this.downloadPath = downloadPath;
         this.speedLabel = speedLabel;
@@ -63,6 +66,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
         this.destDirectory = destDirectory;
         this.intallMods = false;
         this.removeZip = false;
+        this.finalButton = finalButton;
     }
 
     @Override
@@ -107,7 +111,14 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
             Thread.sleep(100);
             if(intallMods){
                 installMods();
+                new Popups().successPopup("Download", "download and installation successful");
+            }else{
+                new Popups().successPopup("Download", "download succesful");
             }
+            
+            reenableButton();
+            
+            
             
         } else {
             throw new IOException("Error en la descarga: Código de respuesta = " + responseCode);
@@ -118,7 +129,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     
     
     public void installMods(){
-        
+                
         File directory = new File(destDirectory);
         if (directory.isDirectory()) {
             String[] files = directory.list();
@@ -143,7 +154,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
                 new File(downloadPath).delete();
                 System.out.println("Zip Deleted");
             }
-            
+                        
             
 
         } else {
@@ -159,6 +170,13 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     
     public void setRemovelZip(boolean x){
         this.removeZip = x;
+    }
+    
+    private void reenableButton(){
+        if(finalButton != null){
+            finalButton.setEnabled(true);
+        }
+        
     }
     /*
     @Override

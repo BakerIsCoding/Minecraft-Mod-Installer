@@ -246,7 +246,7 @@
             <Property name="text" type="java.lang.String" value="Iniciar Descargas"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="downloadButtonMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="downloadButtonMousePressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="titleMods">
@@ -463,7 +463,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="descargaLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tama&#xf1;o estimado: 1111"/>
+            <Property name="text" type="java.lang.String" value="Tama&#xf1;o estimado: 0"/>
           </Properties>
         </Component>
       </SubComponents>

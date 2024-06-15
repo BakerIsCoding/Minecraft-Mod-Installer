@@ -4,9 +4,7 @@
  */
 package com.baker.View;
 
-import com.baker.Requests.DownloadFile;
 import com.baker.Requests.RequestGet;
-import com.baker.Requests.RequestPost;
 import static com.baker.View.AllPanels.apikey;
 import static com.baker.View.AllPanels.domain;
 import com.baker.simpleExceptions.SimpleException;
@@ -14,21 +12,11 @@ import com.baker.utils.FileFolderManager;
 import com.baker.utils.HardwareInfoGetter;
 import com.baker.utils.HashingManager;
 import com.baker.utils.Popups;
-import com.baker.utils.TypesChangers;
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.plaf.basic.BasicFileChooserUI;
 import org.json.JSONObject;
 
 /**
