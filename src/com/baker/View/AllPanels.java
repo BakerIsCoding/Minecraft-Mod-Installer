@@ -23,6 +23,7 @@ import javax.swing.SwingUtilities;
 public class AllPanels extends javax.swing.JPanel {
 
     private int mouseX, mouseY;
+    private RequestGet rget = new RequestGet();
     //Web
     public static final String domain = "https://btools.me";
     public static final String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
@@ -202,9 +203,9 @@ public class AllPanels extends javax.swing.JPanel {
         titleMods.setText("Mods");
 
         checkboxInstallMods.setText("Instalar Mods");
-        checkboxInstallMods.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxInstallModsActionPerformed(evt);
+        checkboxInstallMods.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                checkboxInstallModsItemStateChanged(evt);
             }
         });
 
@@ -276,9 +277,9 @@ public class AllPanels extends javax.swing.JPanel {
         separator9.setForeground(new java.awt.Color(155, 216, 184));
 
         checkboxInstallShaders.setText("Instalar Shaders");
-        checkboxInstallShaders.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxInstallShadersActionPerformed(evt);
+        checkboxInstallShaders.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                checkboxInstallShadersItemStateChanged(evt);
             }
         });
 
@@ -474,10 +475,6 @@ public class AllPanels extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void checkboxInstallModsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxInstallModsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkboxInstallModsActionPerformed
-
     private void graphicSetHighActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphicSetHighActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_graphicSetHighActionPerformed
@@ -490,10 +487,6 @@ public class AllPanels extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_graphicSetLowActionPerformed
 
-    private void checkboxInstallShadersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxInstallShadersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkboxInstallShadersActionPerformed
-
     private void checkboxOpcionesAvanzadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxOpcionesAvanzadasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkboxOpcionesAvanzadasActionPerformed
@@ -502,7 +495,7 @@ public class AllPanels extends javax.swing.JPanel {
         
         downloadButton.setEnabled(false);
 
-        RequestGet rget = new RequestGet();
+        
         Popups popup = new Popups();
         ZipManager zipmanager = new ZipManager();
         String appDataPath = System.getenv("APPDATA");
@@ -545,6 +538,14 @@ public class AllPanels extends javax.swing.JPanel {
         worker.execute();
         
     }//GEN-LAST:event_downloadButtonMousePressed
+
+    private void checkboxInstallModsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkboxInstallModsItemStateChanged
+        actualizeTamanyo();
+    }//GEN-LAST:event_checkboxInstallModsItemStateChanged
+
+    private void checkboxInstallShadersItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkboxInstallShadersItemStateChanged
+        actualizeTamanyo();
+    }//GEN-LAST:event_checkboxInstallShadersItemStateChanged
     public void startDownload(String fileUrl) {
         new Thread(() -> {
             try {
@@ -569,6 +570,34 @@ public class AllPanels extends javax.swing.JPanel {
         }).start();
     }
     
+    public void actualizeTamanyo(){
+        
+        int MBtamaño = 0;
+        
+        Map<String, String> parametersSize = Map.of(
+                "apikey", apikey,
+                "getfilesize", "pleasegivemethefilesize"
+        );
+        if(checkboxInstallMods.isSelected()){                        
+            Long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
+            MBtamaño += (byteTamaño/1024)/1024;
+        }
+        
+        if(checkboxInstallShaders.isSelected()){                        
+            Long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getshaders.php", parametersSize);       
+            MBtamaño += (byteTamaño/1024)/1024;
+        }
+        
+        System.out.println("Total MB: "+MBtamaño);
+        System.out.println("Total GB: "+(MBtamaño/1024));
+        
+        if(MBtamaño > 1024){
+            descargaLabel.setText("Tamaño estimado: "+Math.round((MBtamaño/1024) * 100.0) / 100.0 + " GB");
+        }else{
+            descargaLabel.setText("Tamaño estimado: "+Math.round(MBtamaño * 100.0) / 100.0 + " MB");
+        }
+        
+    }
     
     public void enableDowloadButton(){
         downloadButton.setEnabled(true);

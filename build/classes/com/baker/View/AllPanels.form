@@ -263,7 +263,7 @@
             <Property name="text" type="java.lang.String" value="Instalar Mods"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkboxInstallModsActionPerformed"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="checkboxInstallModsItemStateChanged"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="separator1">
@@ -418,7 +418,7 @@
             <Property name="text" type="java.lang.String" value="Instalar Shaders"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkboxInstallShadersActionPerformed"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="checkboxInstallShadersItemStateChanged"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="textfieldKeybind">
