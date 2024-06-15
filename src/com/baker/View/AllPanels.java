@@ -38,11 +38,11 @@ public class AllPanels extends javax.swing.JPanel {
 
     private int mouseX, mouseY;
     //Web
-    //public static final String domain = "https://btools.me";
-    //public static final String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
+    public static final String domain = "https://btools.me";
+    public static final String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
     //Local
-    public static final String domain = "http://127.0.0.1";
-    public static String apikey = "API-gDjlVTn76N2ZpbaE8yuoVSgoOwGnXCHJJa7vMQOp";
+    //public static final String domain = "http://127.0.0.1";
+    //public static String apikey = "API-gDjlVTn76N2ZpbaE8yuoVSgoOwGnXCHJJa7vMQOp";
     Popups popup = new Popups();
     HardwareInfoGetter hardware = new HardwareInfoGetter();
 
@@ -196,6 +196,7 @@ public class AllPanels extends javax.swing.JPanel {
         checkboxOpcionesAvanzadas = new javax.swing.JCheckBox();
         titleShaders1 = new javax.swing.JLabel();
         separator11 = new javax.swing.JSeparator();
+        descargaLabel = new javax.swing.JLabel();
 
         graphicSetMid.setSelected(true);
 
@@ -315,14 +316,12 @@ public class AllPanels extends javax.swing.JPanel {
 
         separator11.setForeground(new java.awt.Color(155, 216, 184));
 
+        descargaLabel.setText("Tamaño estimado: 1111");
+
         javax.swing.GroupLayout modsPanelLayout = new javax.swing.GroupLayout(modsPanel);
         modsPanel.setLayout(modsPanelLayout);
         modsPanelLayout.setHorizontalGroup(
             modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(modsPanelLayout.createSequentialGroup()
-                .addGap(273, 273, 273)
-                .addComponent(etaLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(modsPanelLayout.createSequentialGroup()
                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(modsPanelLayout.createSequentialGroup()
@@ -391,7 +390,10 @@ public class AllPanels extends javax.swing.JPanel {
                                                 .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(modsPanelLayout.createSequentialGroup()
                                         .addGap(73, 73, 73)
-                                        .addComponent(speedLabel)))
+                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(etaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(speedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(descargaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(downloadButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
@@ -460,6 +462,8 @@ public class AllPanels extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 42, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modsPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(descargaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(speedLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(etaLabel)
@@ -584,6 +588,7 @@ public class AllPanels extends javax.swing.JPanel {
     private javax.swing.JCheckBox checkboxInstallMods;
     private javax.swing.JCheckBox checkboxInstallShaders;
     private javax.swing.JCheckBox checkboxOpcionesAvanzadas;
+    private javax.swing.JLabel descargaLabel;
     private javax.swing.JButton downloadButton;
     private javax.swing.JLabel etaLabel;
     private javax.swing.ButtonGroup graphicBtnGroup;
