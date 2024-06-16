@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
-  <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="graphicBtnGroup">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="graphicSetMid.setSelected(true);&#xa;&#xa;graphicBtnGroup.add(graphicSetHigh);&#xa;graphicBtnGroup.add(graphicSetMid);&#xa;graphicBtnGroup.add(graphicSetLow);"/>
-      </AuxValues>
-    </Component>
-  </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -96,49 +89,42 @@
                               <Component id="separator4" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="graphicSetLow" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                                                  <Component id="checkboxInstallFancy" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="graphicSetMid" alignment="1" max="32767" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="separator5" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="titleDistantHorizons" alignment="0" pref="150" max="32767" attributes="0"/>
-                                                      <Component id="graphicSetHigh" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="titleFancymenu" pref="126" max="32767" attributes="0"/>
-                                                      <Component id="separator7" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="checkboxInstallDistantHorizons" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="checkboxInstallFancy" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="separator5" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="titleDistantHorizons" alignment="0" pref="150" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="subtitleTecla" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="separator8" max="32767" attributes="0"/>
-                                              <Component id="titleVoiceChat" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="textfieldKeybind" alignment="0" pref="154" max="32767" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                                  <Component id="buttonChangeKeybind" min="-2" pref="114" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="etaLabel" min="-2" pref="131" max="-2" attributes="0"/>
-                                              <Component id="speedLabel" min="-2" pref="143" max="-2" attributes="0"/>
-                                              <Component id="descargaLabel" min="-2" pref="153" max="-2" attributes="0"/>
+                                              <Component id="titleFancymenu" pref="126" max="32767" attributes="0"/>
+                                              <Component id="separator7" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="subtitleTecla" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="separator8" max="32767" attributes="0"/>
+                                      <Component id="titleVoiceChat" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="textfieldKeybind" alignment="0" pref="154" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                          <Component id="buttonChangeKeybind" min="-2" pref="114" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="etaLabel" min="-2" pref="131" max="-2" attributes="0"/>
+                                      <Component id="speedLabel" min="-2" pref="143" max="-2" attributes="0"/>
+                                      <Component id="descargaLabel" min="-2" pref="153" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -188,15 +174,9 @@
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="checkboxInstallFancy" min="-2" max="-2" attributes="0"/>
-                              <Component id="graphicSetLow" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="graphicSetMid" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="graphicSetHigh" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="checkboxInstallFancy" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="checkboxInstallDistantHorizons" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="subtitleTecla" min="-2" max="-2" attributes="0"/>
@@ -214,7 +194,7 @@
                           <Component id="checkboxInstallShaders" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="titleShaders1" min="-2" max="-2" attributes="0"/>
@@ -260,7 +240,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkboxInstallMods">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Instalar Mods"/>
+            <Property name="text" type="java.lang.String" value="Descargar Mods"/>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="checkboxInstallModsItemStateChanged"/>
@@ -275,7 +255,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkboxDecompress">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Descomprimir Mods"/>
+            <Property name="text" type="java.lang.String" value="Instalar Mods"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="separator2">
@@ -284,27 +264,6 @@
               <Color blue="b8" green="d8" red="9b" type="rgb"/>
             </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="graphicSetLow">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Graficos Bajos"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="graphicSetLowActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="graphicSetMid">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Graficos Medios"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="graphicSetHigh">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Graficos Altos"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="graphicSetHighActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="titleDistantHorizons">
           <Properties>
@@ -464,6 +423,11 @@
         <Component class="javax.swing.JLabel" name="descargaLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tama&#xf1;o estimado: 0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="checkboxInstallDistantHorizons">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Descargar e instalar"/>
           </Properties>
         </Component>
       </SubComponents>

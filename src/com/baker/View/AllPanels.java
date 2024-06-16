@@ -85,6 +85,8 @@ public class AllPanels extends javax.swing.JPanel {
         checkboxInstallShaders.setSelected(true);
         checkboxInstallFancy.setSelected(true);
         checkboxInstallFancy.setEnabled(false);
+        checkboxInstallDistantHorizons.setEnabled(true);
+        checkboxInstallDistantHorizons.setSelected(true);
 
     }
 
@@ -151,7 +153,6 @@ public class AllPanels extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        graphicBtnGroup = new javax.swing.ButtonGroup();
         modsPanel = new javax.swing.JPanel();
         downloadButton = new javax.swing.JButton();
         titleMods = new javax.swing.JLabel();
@@ -159,9 +160,6 @@ public class AllPanels extends javax.swing.JPanel {
         separator1 = new javax.swing.JSeparator();
         checkboxDecompress = new javax.swing.JCheckBox();
         separator2 = new javax.swing.JSeparator();
-        graphicSetLow = new javax.swing.JRadioButton();
-        graphicSetMid = new javax.swing.JRadioButton();
-        graphicSetHigh = new javax.swing.JRadioButton();
         titleDistantHorizons = new javax.swing.JLabel();
         separator4 = new javax.swing.JSeparator();
         titleConfigs = new javax.swing.JLabel();
@@ -184,12 +182,7 @@ public class AllPanels extends javax.swing.JPanel {
         titleShaders1 = new javax.swing.JLabel();
         separator11 = new javax.swing.JSeparator();
         descargaLabel = new javax.swing.JLabel();
-
-        graphicSetMid.setSelected(true);
-
-        graphicBtnGroup.add(graphicSetHigh);
-        graphicBtnGroup.add(graphicSetMid);
-        graphicBtnGroup.add(graphicSetLow);
+        checkboxInstallDistantHorizons = new javax.swing.JCheckBox();
 
         downloadButton.setText("Iniciar Descargas");
         downloadButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -202,7 +195,7 @@ public class AllPanels extends javax.swing.JPanel {
         titleMods.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleMods.setText("Mods");
 
-        checkboxInstallMods.setText("Instalar Mods");
+        checkboxInstallMods.setText("Descargar Mods");
         checkboxInstallMods.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 checkboxInstallModsItemStateChanged(evt);
@@ -211,25 +204,9 @@ public class AllPanels extends javax.swing.JPanel {
 
         separator1.setForeground(new java.awt.Color(155, 216, 184));
 
-        checkboxDecompress.setText("Descomprimir Mods");
+        checkboxDecompress.setText("Instalar Mods");
 
         separator2.setForeground(new java.awt.Color(155, 216, 184));
-
-        graphicSetLow.setText("Graficos Bajos");
-        graphicSetLow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                graphicSetLowActionPerformed(evt);
-            }
-        });
-
-        graphicSetMid.setText("Graficos Medios");
-
-        graphicSetHigh.setText("Graficos Altos");
-        graphicSetHigh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                graphicSetHighActionPerformed(evt);
-            }
-        });
 
         titleDistantHorizons.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         titleDistantHorizons.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -305,6 +282,8 @@ public class AllPanels extends javax.swing.JPanel {
 
         descargaLabel.setText("Tamaño estimado: 0");
 
+        checkboxInstallDistantHorizons.setText("Descargar e instalar");
+
         javax.swing.GroupLayout modsPanelLayout = new javax.swing.GroupLayout(modsPanel);
         modsPanel.setLayout(modsPanelLayout);
         modsPanelLayout.setHorizontalGroup(
@@ -351,37 +330,32 @@ public class AllPanels extends javax.swing.JPanel {
                             .addGroup(modsPanelLayout.createSequentialGroup()
                                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(modsPanelLayout.createSequentialGroup()
-                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(modsPanelLayout.createSequentialGroup()
-                                                .addComponent(graphicSetLow)
-                                                .addGap(59, 59, 59)
-                                                .addComponent(checkboxInstallFancy))
-                                            .addComponent(graphicSetMid, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(modsPanelLayout.createSequentialGroup()
-                                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(separator5, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(titleDistantHorizons, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                                    .addComponent(graphicSetHigh, javax.swing.GroupLayout.Alignment.LEADING))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(titleFancymenu, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                                                    .addComponent(separator7))))
+                                        .addComponent(checkboxInstallDistantHorizons, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(checkboxInstallFancy))
+                                    .addGroup(modsPanelLayout.createSequentialGroup()
+                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(separator5, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(titleDistantHorizons, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(subtitleTecla)
-                                            .addComponent(separator8)
-                                            .addComponent(titleVoiceChat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(textfieldKeybind, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                            .addGroup(modsPanelLayout.createSequentialGroup()
-                                                .addGap(21, 21, 21)
-                                                .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(titleFancymenu, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                                            .addComponent(separator7))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(subtitleTecla)
+                                    .addComponent(separator8)
+                                    .addComponent(titleVoiceChat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textfieldKeybind, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                                     .addGroup(modsPanelLayout.createSequentialGroup()
-                                        .addGap(73, 73, 73)
-                                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(etaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(speedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(descargaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(21, 21, 21)
+                                        .addComponent(buttonChangeKeybind, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(modsPanelLayout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(speedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(descargaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(downloadButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
         );
@@ -417,14 +391,9 @@ public class AllPanels extends javax.swing.JPanel {
                         .addGap(0, 0, 0)
                         .addComponent(checkboxInstallMods)))
                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(modsPanelLayout.createSequentialGroup()
-                        .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkboxInstallFancy)
-                            .addComponent(graphicSetLow))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(graphicSetMid)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(graphicSetHigh))
+                    .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(checkboxInstallFancy)
+                        .addComponent(checkboxInstallDistantHorizons))
                     .addGroup(modsPanelLayout.createSequentialGroup()
                         .addComponent(subtitleTecla)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -438,7 +407,7 @@ public class AllPanels extends javax.swing.JPanel {
                         .addComponent(separator9, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(checkboxInstallShaders)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(14, 14, 14)
                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(modsPanelLayout.createSequentialGroup()
                         .addComponent(titleShaders1)
@@ -475,17 +444,9 @@ public class AllPanels extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void graphicSetHighActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphicSetHighActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_graphicSetHighActionPerformed
-
     private void checkboxInstallFancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxInstallFancyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkboxInstallFancyActionPerformed
-
-    private void graphicSetLowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphicSetLowActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_graphicSetLowActionPerformed
 
     private void checkboxOpcionesAvanzadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxOpcionesAvanzadasActionPerformed
         // TODO add your handling code here:
@@ -516,7 +477,7 @@ public class AllPanels extends javax.swing.JPanel {
 
         Map<String, String> parametersDownload = Map.of(
             "apikey", apikey,
-            "modlink", "pleasegivemethedownloadlink"
+            "link", "pleasegivemethedownloadlink"
         );
 
         Long totalSize = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
@@ -607,6 +568,7 @@ public class AllPanels extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonChangeKeybind;
     private javax.swing.JCheckBox checkboxDecompress;
+    private javax.swing.JCheckBox checkboxInstallDistantHorizons;
     private javax.swing.JCheckBox checkboxInstallFancy;
     private javax.swing.JCheckBox checkboxInstallMods;
     private javax.swing.JCheckBox checkboxInstallShaders;
@@ -614,10 +576,6 @@ public class AllPanels extends javax.swing.JPanel {
     private javax.swing.JLabel descargaLabel;
     private javax.swing.JButton downloadButton;
     private javax.swing.JLabel etaLabel;
-    private javax.swing.ButtonGroup graphicBtnGroup;
-    private javax.swing.JRadioButton graphicSetHigh;
-    private javax.swing.JRadioButton graphicSetLow;
-    private javax.swing.JRadioButton graphicSetMid;
     private javax.swing.JPanel modsPanel;
     private javax.swing.JSeparator separator1;
     private javax.swing.JSeparator separator11;
