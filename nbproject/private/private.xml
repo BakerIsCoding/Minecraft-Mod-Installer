@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Baker/Documents/GhubDesktop/Minecraft-Mod-Installer/src/com/baker/utils/Popups.java</file>
-            <file>file:/C:/Users/Baker/Documents/GhubDesktop/Minecraft-Mod-Installer/src/com/baker/utils/DownloadWorker.java</file>
-            <file>file:/C:/Users/Baker/Documents/GhubDesktop/Minecraft-Mod-Installer/src/com/baker/Requests/RequestGet.java</file>
-            <file>file:/C:/Users/Baker/Documents/GhubDesktop/Minecraft-Mod-Installer/src/com/baker/View/AllPanels.java</file>
-            <file>file:/C:/Users/Baker/Documents/GhubDesktop/Minecraft-Mod-Installer/src/com/baker/View/LoginScreen.java</file>
+            <file>file:/C:/Users/Javier/Documents/NetBeansProjects/Minecraft-Mod-Installer/src/com/baker/View/AllPanels.java</file>
+            <file>file:/C:/Users/Javier/Documents/NetBeansProjects/Minecraft-Mod-Installer/src/com/baker/utils/DownloadWorker.java</file>
+            <file>file:/C:/Users/Javier/Documents/NetBeansProjects/Minecraft-Mod-Installer/src/com/baker/View/LoginScreen.java</file>
+            <file>file:/C:/Users/Javier/Documents/NetBeansProjects/Minecraft-Mod-Installer/src/com/baker/Main.java</file>
+            <file>file:/C:/Users/Javier/Documents/NetBeansProjects/Minecraft-Mod-Installer/src/com/baker/utils/Popups.java</file>
+            <file>file:/C:/Users/Javier/Documents/NetBeansProjects/Minecraft-Mod-Installer/src/com/baker/View/LoaderScreen.java</file>
         </group>
     </open-files>
 </project-private>

@@ -463,8 +463,8 @@ public class AllPanels extends javax.swing.JPanel {
 
         System.out.println(appDataPath);
 
-        String zipFilePath = appDataPath + "/.minecraft-mod-installer/temp/mods.zip";
-        String destDirectory = appDataPath + "/.minecraft/mods/";
+        String zipFilePath = appDataPath + File.separator+".minecraft-mod-installer"+File.separator+"temp"+File.separator;
+        String destDirectory = appDataPath + File.separator +".minecraft"+File.separator+"mods"+File.separator;
 
         Map<String, String> parametersApi = Map.of(
             "apikey", apikey
@@ -481,21 +481,41 @@ public class AllPanels extends javax.swing.JPanel {
         );
 
         Long totalSize = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
-        String modsUrl = rget.getDownloadLink(domain + "/api/minecraft/getmods.php", parametersDownload);
+        
+        String modsUrl = null,shaderUrl = null,configUrl = null,horizonsUrl = null;
+        
+        if(checkboxInstallMods.isSelected()){
+            modsUrl = rget.getDownloadLink(domain + "/api/minecraft/getmods.php", parametersDownload);
+        }
+        
+        if(checkboxInstallShaders.isSelected()){
+            shaderUrl = rget.getDownloadLink(domain + "/api/minecraft/getshaders.php", parametersDownload);
+        }
+        
+        if(checkboxInstallDistantHorizons.isSelected()){
+            horizonsUrl = rget.getDownloadLink(domain + "/api/minecraft/getdistanthorizons.php", parametersDownload);
+        }
+        
+        configUrl = rget.getDownloadLink(domain + "/api/minecraft/getshaders.php", parametersDownload);
 
+        
         DownloadWorker worker = new DownloadWorker(
             modsUrl,
+            shaderUrl,
+            configUrl,
+            horizonsUrl,
             zipFilePath,
             speedLabel,
             etaLabel,
             totalSize,
             zipmanager,
             destDirectory,
-            downloadButton
+            downloadButton,
+            descargaLabel
         );
 
         worker.setInstallMods(checkboxInstallMods.isSelected());
-        worker.setRemovelZip(true);
+        worker.setRemovelZip(false);
         worker.execute();
         
     }//GEN-LAST:event_downloadButtonMousePressed
