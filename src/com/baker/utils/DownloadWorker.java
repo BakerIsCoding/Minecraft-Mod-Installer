@@ -32,6 +32,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -94,7 +96,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
             if (downloadShader != null) {
                 informativeLabel.setText("Dowloading Shaders");
                 downloadFiles(downloadShader, "shaders.zip");
-                intallShaders();
+                installShaders();
             }
 
             if (downloadConfig != null) {
@@ -106,6 +108,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
             if (downloadHorizont != null) {
                 informativeLabel.setText("Dowloading Horizont");
                 downloadFiles(downloadHorizont, "Horizon.zip");
+                installHorizont();
             }
 
             informativeLabel.setText("Dowloading successful");
@@ -144,7 +147,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
             zipManager.unzip(downloadPath + File.separator + "mods.zip", destDirectory + "mods");
 
             if (removeZip) {
-                new File(downloadPath+"mods.zip").delete();
+                new File(downloadPath + "mods.zip").delete();
                 System.out.println("mods Zip Deleted");
             }
 
@@ -154,8 +157,8 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
 
     }
 
-    private void intallShaders() {
-        
+    private void installShaders() {
+
         File tempDirectori = new File(downloadPath), mineDirectori = new File(destDirectory);
         if (tempDirectori.exists() && mineDirectori.exists()) {
             System.out.println(downloadPath + "shaders.zip");
@@ -166,17 +169,18 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
 
             File destino = new File(directShaders, "shaders.zip");
 
-            if (shaders.renameTo(destino)) {
-                System.out.println("Archivo movido a: " + destino.getPath());
-            } else {
-                System.out.println("No se pudo mover el archivo.");
-            }
-            
-            if (removeZip) {
-                new File(downloadPath+"shaders.zip").delete();
-                System.out.println("shaders Zip Deleted");
-            }
+            try {
+                Files.copy(shaders.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Archivo copiado a: " + destino.getPath());
 
+                if (removeZip) {
+                    shaders.delete();
+                    System.out.println("shaders Zip Deleted");
+                }
+
+            } catch (IOException e) {
+                System.out.println("No se pudo copiar el archivo.");
+            }
 
         } else {
             System.out.println("El directorio temporal o minecraft no existe");
@@ -184,23 +188,39 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     }
 
     private void intallConfig() {
-        //downloadPath: C:\Users\Javier\AppData\Roaming\.minecraft-mod-installer\temp\
-        //destDirectory: C:\Users\Javier\AppData\Roaming\.minecraft\
-        System.out.println(downloadPath+"Config.zip");
-        System.out.println(destDirectory);
-        
-        File configFile = new File(downloadPath+"Config.zip");
-        String exist = configFile.exists() ? "Existe el archivo" : "No existe el archivo";
-        System.out.println(exist);
-        
-        
-        
+
+        File configFile = new File(downloadPath + "Config.zip");
+
+        if (configFile.exists()) {
+            zipManager.unzip(downloadPath + "Config.zip", destDirectory);
+            System.out.println("Unzip Config Succes");
+        } else {
+            System.out.println("File Config.zip not exist");
+        }
+
+        if (removeZip) {
+            new File(downloadPath + "Config.zip").delete();
+            System.out.println("Config Zip Deleted");
+        }
+
     }
 
     private void installHorizont() {
-        
-        
-        
+
+        File configFile = new File(downloadPath + "Horizon.zip");
+
+        if (configFile.exists()) {
+            zipManager.unzip(downloadPath + "Horizon.zip", destDirectory);
+            System.out.println("Unzip Horizon Succes");
+        } else {
+            System.out.println("File Horizon.zip not exist");
+        }
+
+        if (removeZip) {
+            new File(downloadPath + "Horizon.zip").delete();
+            System.out.println("Horizon Zip Deleted");
+        }
+
     }
 
     private void downloadFiles(String downloadUrl, String nameFile) throws MalformedURLException, ProtocolException, IOException, InterruptedException {

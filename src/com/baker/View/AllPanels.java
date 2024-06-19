@@ -517,7 +517,7 @@ public class AllPanels extends javax.swing.JPanel {
         );
 
         worker.setInstallMods(checkboxInstallMods.isSelected());
-        worker.setRemovelZip(false);
+        worker.setRemovelZip(true);
         worker.execute();
 
     }//GEN-LAST:event_downloadButtonMousePressed
