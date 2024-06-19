@@ -86,7 +86,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
         try {
 
             if (downloadMods != null) {
-                informativeLabel.setText("Dowloading mods");
+                informativeLabel.setText("Descargando Mods");
                 downloadFiles(downloadMods, "mods.zip");
                 if (intallMods) {
                     installMods();
@@ -94,25 +94,25 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
             }
 
             if (downloadShader != null) {
-                informativeLabel.setText("Dowloading Shaders");
+                informativeLabel.setText("Descargando Shaders");
                 downloadFiles(downloadShader, "shaders.zip");
                 installShaders();
             }
 
             if (downloadConfig != null) {
-                informativeLabel.setText("Dowloading Config");
+                informativeLabel.setText("Descargando Configuraciones");
                 downloadFiles(downloadConfig, "Config.zip");
                 intallConfig();
             }
 
             if (downloadHorizont != null) {
-                informativeLabel.setText("Dowloading Horizont");
+                informativeLabel.setText("Descargando Horizon");
                 downloadFiles(downloadHorizont, "Horizon.zip");
                 installHorizont();
             }
 
-            informativeLabel.setText("Dowloading successful");
-            new Popups().successPopup("Download", "download successful");
+            informativeLabel.setText("Descargas completadas");
+            new Popups().successPopup("Descargas", "Se ha descargado e instalado correctamente");
 
         } catch (IOException | InterruptedException ex) {
             System.out.println(ex.getMessage());
@@ -161,9 +161,6 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
 
         File tempDirectori = new File(downloadPath), mineDirectori = new File(destDirectory);
         if (tempDirectori.exists() && mineDirectori.exists()) {
-            System.out.println(downloadPath + "shaders.zip");
-            System.out.println(destDirectory + "shaderpacks");
-
             File shaders = new File(downloadPath + "shaders.zip");
             File directShaders = new File(destDirectory + "shaderpacks");
 

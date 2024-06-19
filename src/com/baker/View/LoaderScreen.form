@@ -109,7 +109,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="versionText">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver: 1.0"/>
+            <Property name="text" type="java.lang.String" value="Ver: 1.9"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="infoLabel">
@@ -118,12 +118,12 @@
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Starting "/>
+            <Property name="text" type="java.lang.String" value="Iniciando..."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="versionText1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Made by baker with &#x2665;"/>
+            <Property name="text" type="java.lang.String" value="Made by Baker &amp; CourtesiLOL with &#x2665;"/>
           </Properties>
         </Component>
       </SubComponents>

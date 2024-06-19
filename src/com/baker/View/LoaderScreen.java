@@ -5,19 +5,11 @@
 package com.baker.View;
 
 import com.baker.Requests.RequestGet;
-import com.baker.simpleExceptions.SimpleException;
-import com.baker.utils.HardwareInfoGetter;
 import com.baker.utils.Popups;
-import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 import org.json.JSONObject;
 
 /**
@@ -100,13 +92,13 @@ public class LoaderScreen extends javax.swing.JFrame {
 
         separator.setForeground(new java.awt.Color(155, 216, 184));
 
-        versionText.setText("Ver: 1.0");
+        versionText.setText("Ver: 1.9");
 
         infoLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        infoLabel.setText("Starting ");
+        infoLabel.setText("Iniciando...");
 
-        versionText1.setText("Made by baker with ♥");
+        versionText1.setText("Made by Baker & CourtesiLOL with ♥");
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -205,7 +197,16 @@ public class LoaderScreen extends javax.swing.JFrame {
                     checksPassed += 1;
                 }
                 Thread.sleep(100);
-                infoLabel.setText("Comprobando la disponibilidad de los shaders ...");
+                Thread.sleep(100);
+                infoLabel.setText("Comprobando el endpoint \"getdistanthorizons\" ...");
+
+                response = rget.sendGetRequest("https://btools.me/api/minecraft/getdistanthorizons.php", parameters);
+
+                if (response != null) {
+                    checksPassed += 1;
+                }
+                Thread.sleep(101);
+                infoLabel.setText("Comprobando la disponibilidad de distant horizons ...");
 
                 Thread.sleep(100);
                 infoLabel.setText("Comprobando el endpoint \"getconfigs\" ...");
@@ -219,10 +220,10 @@ public class LoaderScreen extends javax.swing.JFrame {
                 infoLabel.setText("Comprobando la disponibilidad de las configuraciones ...");
 
                 Thread.sleep(100);
-                infoLabel.setText("Conexiones con éxito " + checksPassed + "/5 ...");
+                infoLabel.setText("Conexiones con éxito " + checksPassed + "/6 ...");
                 Thread.sleep(2000);
 
-                if (checksPassed == 5) {
+                if (checksPassed == 6) {
                     startedOtherPanel = true;
                     Thread.sleep(100);
                     infoLabel.setText("Iniciando Mod Installer ...");
