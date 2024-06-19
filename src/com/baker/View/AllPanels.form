@@ -311,7 +311,7 @@
             <Property name="text" type="java.lang.String" value="Instalar Menu"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkboxInstallFancyActionPerformed"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="checkboxInstallFancyItemStateChanged"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="titleAll">
@@ -429,6 +429,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Descargar e instalar"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="checkboxInstallDistantHorizonsItemStateChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -42,14 +42,13 @@ import javax.swing.SwingWorker;
  * @author Baker
  */
 public class DownloadWorker extends SwingWorker<Void, Void> {
-    
-    
+
     //URL to download
     private String downloadMods;
     private String downloadShader;
     private String downloadConfig;
     private String downloadHorizont;
-    
+
     private String downloadPath;
     private JLabel speedLabel;
     private JLabel etaLabel;
@@ -58,7 +57,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     private String destDirectory;
     private JButton finalButton;
     private JLabel informativeLabel;
-    
+
     private boolean removeZip;
     private boolean intallMods;
 
@@ -79,58 +78,53 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
         this.intallMods = false;
     }
 
-    
-
     @Override
     protected Void doInBackground() throws Exception {
-        
-        try{
-            
-            if(downloadMods != null){
+
+        try {
+
+            if (downloadMods != null) {
                 informativeLabel.setText("Dowloading mods");
-                downloadFiles(downloadMods,"mods.zip");
-                if(intallMods){
+                downloadFiles(downloadMods, "mods.zip");
+                if (intallMods) {
                     installMods();
                 }
             }
-            
-            if(downloadShader != null){
+
+            if (downloadShader != null) {
                 informativeLabel.setText("Dowloading Shaders");
-                Thread.sleep(500);
-                downloadFiles(downloadShader,"shaders.zip");
+                downloadFiles(downloadShader, "shaders.zip");
+                intallShaders();
             }
-            
-            if(downloadConfig != null){
+
+            if (downloadConfig != null) {
                 informativeLabel.setText("Dowloading Config");
-                downloadFiles(downloadConfig, "Config");
+                downloadFiles(downloadConfig, "Config.zip");
             }
-            
-            if(downloadHorizont != null){
+
+            if (downloadHorizont != null) {
                 informativeLabel.setText("Dowloading Horizont");
-                downloadFiles(downloadHorizont,"Horizont");
+                downloadFiles(downloadHorizont, "Horizon.zip");
             }
-            
-            
+
             informativeLabel.setText("Dowloading successful");
             new Popups().successPopup("Download", "download successful");
-            
-            
-        }catch (IOException | InterruptedException ex){
+
+        } catch (IOException | InterruptedException ex) {
             System.out.println(ex.getMessage());
         }
-        
-        reenableButton();
 
+        reenableButton();
 
         return null;
 
     }
 
     public void installMods() {
-        
-        File directory = new File(destDirectory);
-        if (directory.isDirectory()) {
-            String[] files = directory.list();
+        System.out.println(destDirectory + "mods");
+        File modDirectory = new File(destDirectory + "mods");
+        if (modDirectory.isDirectory()) {
+            String[] files = modDirectory.list();
             System.out.println("Archivos en el directorio:");
             if (files.length > 0) {
                 System.out.println("Ya hay mods, Borrando ...");
@@ -146,7 +140,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
 
             }
 
-            zipManager.unzip(downloadPath+File.separator+"mods.zip", destDirectory);
+            zipManager.unzip(downloadPath + File.separator + "mods.zip", destDirectory);
 
             if (removeZip) {
                 new File(downloadPath).delete();
@@ -158,9 +152,43 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
         }
 
     }
-    
-    private void downloadFiles(String downloadUrl, String nameFile) throws MalformedURLException, ProtocolException, IOException, InterruptedException{
-        
+
+    private void intallShaders() {
+        //downloadPath: C:\Users\Javier\AppData\Roaming\.minecraft-mod-installer\temp\
+        //destDirectory: C:\Users\Javier\AppData\Roaming\.minecraft\mods\
+
+        File tempDirectori = new File(downloadPath), mineDirectori = new File(destDirectory);
+        if (tempDirectori.exists() && mineDirectori.exists()) {
+            System.out.println(downloadPath + "shaders.zip");
+            System.out.println(destDirectory + "shaderpacks");
+
+            File shaders = new File(downloadPath + "shaders.zip");
+            File directShaders = new File(destDirectory + "shaderpacks");
+
+            File destino = new File(directShaders, "shaders.zip");
+
+            if (shaders.renameTo(destino)) {
+                System.out.println("Archivo movido a: " + destino.getPath());
+            } else {
+                System.out.println("No se pudo mover el archivo.");
+            }
+
+
+        } else {
+            System.out.println("El directorio temporal o minecraft no existe");
+        }
+    }
+
+    private void intallConfig() {
+            
+    }
+
+    private void installHorizont() {
+
+    }
+
+    private void downloadFiles(String downloadUrl, String nameFile) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
+
         // Crear objeto URL a partir del string downloadUrl
         URL url = new URL(downloadUrl);
 
@@ -186,7 +214,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
             long lastUpdateTime = 0;
 
             // Usar try-with-resources para abrir un InputStream y un FileOutputStream, asegurando que se cierren automáticamente
-            try (InputStream in = new BufferedInputStream(con.getInputStream()); FileOutputStream fileOutputStream = new FileOutputStream(downloadPath+File.separator+nameFile)) {
+            try (InputStream in = new BufferedInputStream(con.getInputStream()); FileOutputStream fileOutputStream = new FileOutputStream(downloadPath + File.separator + nameFile)) {
 
                 // Crear un búfer de 1 KB para leer datos
                 byte[] dataBuffer = new byte[1024];
@@ -228,16 +256,13 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
                 }
             }
 
-
-
-
         } else {
             // Lanzar una excepción si el código de respuesta no es HTTP_OK (200)
             throw new IOException("Error en la descarga: Código de respuesta = " + responseCode);
         }
-        
+
     }
-    
+
     public void setInstallMods(boolean x) {
         this.intallMods = x;
     }

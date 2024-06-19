@@ -225,9 +225,9 @@ public class AllPanels extends javax.swing.JPanel {
         titleFancymenu.setText("FancyMenu");
 
         checkboxInstallFancy.setText("Instalar Menu");
-        checkboxInstallFancy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxInstallFancyActionPerformed(evt);
+        checkboxInstallFancy.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                checkboxInstallFancyItemStateChanged(evt);
             }
         });
 
@@ -283,6 +283,11 @@ public class AllPanels extends javax.swing.JPanel {
         descargaLabel.setText("Tamaño estimado: 0");
 
         checkboxInstallDistantHorizons.setText("Descargar e instalar");
+        checkboxInstallDistantHorizons.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                checkboxInstallDistantHorizonsItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout modsPanelLayout = new javax.swing.GroupLayout(modsPanel);
         modsPanel.setLayout(modsPanelLayout);
@@ -444,80 +449,74 @@ public class AllPanels extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void checkboxInstallFancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxInstallFancyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkboxInstallFancyActionPerformed
-
     private void checkboxOpcionesAvanzadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxOpcionesAvanzadasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkboxOpcionesAvanzadasActionPerformed
 
     private void downloadButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_downloadButtonMousePressed
-        
+
         downloadButton.setEnabled(false);
 
-        
         Popups popup = new Popups();
         ZipManager zipmanager = new ZipManager();
         String appDataPath = System.getenv("APPDATA");
 
         System.out.println(appDataPath);
 
-        String zipFilePath = appDataPath + File.separator+".minecraft-mod-installer"+File.separator+"temp"+File.separator;
-        String destDirectory = appDataPath + File.separator +".minecraft"+File.separator+"mods"+File.separator;
+        String zipFilePath = appDataPath + File.separator + ".minecraft-mod-installer" + File.separator + "temp" + File.separator;
+        String destDirectory = appDataPath + File.separator + ".minecraft" + File.separator;
 
         Map<String, String> parametersApi = Map.of(
-            "apikey", apikey
+                "apikey", apikey
         );
 
         Map<String, String> parametersSize = Map.of(
-            "apikey", apikey,
-            "getfilesize", "pleasegivemethefilesize"
+                "apikey", apikey,
+                "getfilesize", "pleasegivemethefilesize"
         );
 
         Map<String, String> parametersDownload = Map.of(
-            "apikey", apikey,
-            "link", "pleasegivemethedownloadlink"
+                "apikey", apikey,
+                "link", "pleasegivemethedownloadlink"
         );
 
         Long totalSize = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
-        
-        String modsUrl = null,shaderUrl = null,configUrl = null,horizonsUrl = null;
-        
-        if(checkboxInstallMods.isSelected()){
+
+        String modsUrl = null, shaderUrl = null, configUrl = null, horizonsUrl = null;
+
+        if (checkboxInstallMods.isSelected()) {
             modsUrl = rget.getDownloadLink(domain + "/api/minecraft/getmods.php", parametersDownload);
         }
-        
-        if(checkboxInstallShaders.isSelected()){
+
+        if (checkboxInstallShaders.isSelected()) {
             shaderUrl = rget.getDownloadLink(domain + "/api/minecraft/getshaders.php", parametersDownload);
         }
-        
-        if(checkboxInstallDistantHorizons.isSelected()){
+
+        if (checkboxInstallDistantHorizons.isSelected()) {
             horizonsUrl = rget.getDownloadLink(domain + "/api/minecraft/getdistanthorizons.php", parametersDownload);
         }
-        
-        configUrl = rget.getDownloadLink(domain + "/api/minecraft/getshaders.php", parametersDownload);
 
-        
+        configUrl = rget.getDownloadLink(domain + "/api/minecraft/getconfigs.php", parametersDownload);
+
         DownloadWorker worker = new DownloadWorker(
-            modsUrl,
-            shaderUrl,
-            configUrl,
-            horizonsUrl,
-            zipFilePath,
-            speedLabel,
-            etaLabel,
-            totalSize,
-            zipmanager,
-            destDirectory,
-            downloadButton,
-            descargaLabel
+                modsUrl,
+                shaderUrl,
+                configUrl,
+                horizonsUrl,
+                zipFilePath,
+                speedLabel,
+                etaLabel,
+                totalSize,
+                zipmanager,
+                destDirectory,
+                downloadButton,
+                descargaLabel
         );
 
         worker.setInstallMods(checkboxInstallMods.isSelected());
         worker.setRemovelZip(false);
         worker.execute();
-        
+
     }//GEN-LAST:event_downloadButtonMousePressed
 
     private void checkboxInstallModsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkboxInstallModsItemStateChanged
@@ -527,6 +526,14 @@ public class AllPanels extends javax.swing.JPanel {
     private void checkboxInstallShadersItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkboxInstallShadersItemStateChanged
         actualizeTamanyo();
     }//GEN-LAST:event_checkboxInstallShadersItemStateChanged
+
+    private void checkboxInstallFancyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkboxInstallFancyItemStateChanged
+        actualizeTamanyo();
+    }//GEN-LAST:event_checkboxInstallFancyItemStateChanged
+
+    private void checkboxInstallDistantHorizonsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkboxInstallDistantHorizonsItemStateChanged
+        actualizeTamanyo();
+    }//GEN-LAST:event_checkboxInstallDistantHorizonsItemStateChanged
     public void startDownload(String fileUrl) {
         new Thread(() -> {
             try {
@@ -550,37 +557,48 @@ public class AllPanels extends javax.swing.JPanel {
             }
         }).start();
     }
-    
-    public void actualizeTamanyo(){
-        
-        int MBtamaño = 0;
-        
+
+    private void actualizeTamanyo() {
+        long totalBytes = 0;
+
         Map<String, String> parametersSize = Map.of(
                 "apikey", apikey,
                 "getfilesize", "pleasegivemethefilesize"
         );
-        if(checkboxInstallMods.isSelected()){                        
-            Long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
-            MBtamaño += (byteTamaño/1024)/1024;
+
+        if (checkboxInstallMods.isSelected()) {
+            long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
+            totalBytes += byteTamaño;
         }
-        
-        if(checkboxInstallShaders.isSelected()){                        
-            Long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getshaders.php", parametersSize);       
-            MBtamaño += (byteTamaño/1024)/1024;
+
+        if (checkboxInstallShaders.isSelected()) {
+            long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getshaders.php", parametersSize);
+            totalBytes += byteTamaño;
         }
-        
-        System.out.println("Total MB: "+MBtamaño);
-        System.out.println("Total GB: "+(MBtamaño/1024));
-        
-        if(MBtamaño > 1024){
-            descargaLabel.setText("Tamaño estimado: "+Math.round((MBtamaño/1024) * 100.0) / 100.0 + " GB");
-        }else{
-            descargaLabel.setText("Tamaño estimado: "+Math.round(MBtamaño * 100.0) / 100.0 + " MB");
+
+        if (checkboxInstallDistantHorizons.isSelected()) {
+            long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getdistanthorizons.php", parametersSize);
+            totalBytes += byteTamaño;
         }
-        
+
+        if (checkboxInstallFancy.isSelected()) {
+            long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getconfigs.php", parametersSize);
+            totalBytes += byteTamaño;
+        }
+
+        System.out.println("Total bytes: " + totalBytes);
+
+        double totalMB = totalBytes / (1024.0 * 1024.0);
+
+        if (totalMB > 1024) {
+            double totalGB = totalMB / 1024.0;
+            descargaLabel.setText("Tamaño estimado: " + Math.round(totalGB * 100.0) / 100.0 + " GB");
+        } else {
+            descargaLabel.setText("Tamaño estimado: " + Math.round(totalMB * 100.0) / 100.0 + " MB");
+        }
     }
-    
-    public void enableDowloadButton(){
+
+    public void enableDowloadButton() {
         downloadButton.setEnabled(true);
     }
 
