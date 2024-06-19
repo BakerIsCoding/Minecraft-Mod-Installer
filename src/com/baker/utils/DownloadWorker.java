@@ -134,14 +134,14 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
                     String[] filetipe = file.split("\\.");
                     if (filetipe[filetipe.length - 1].equalsIgnoreCase("jar")) {
                         System.out.println("Se borro: " + file);
-                        new File(destDirectory + File.separator + file).delete();
+                        new File(destDirectory + "mods" + File.separator + file).delete();
                     }
                 }
                 System.out.println("Limpieza completada");
 
             }
 
-            zipManager.unzip(downloadPath + File.separator + "mods.zip", destDirectory);
+            zipManager.unzip(downloadPath + File.separator + "mods.zip", destDirectory + "mods");
 
             if (removeZip) {
                 new File(downloadPath+"mods.zip").delete();
