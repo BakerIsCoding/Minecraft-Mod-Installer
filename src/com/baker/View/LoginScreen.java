@@ -17,6 +17,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Map;
 import javax.swing.JFrame;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 import org.json.JSONObject;
 
 /**
@@ -240,7 +241,8 @@ public class LoginScreen extends javax.swing.JPanel {
                 AllPanels allpanels = new AllPanels();
                 // Panel Content Overwrite
                 JFrame allPanelsFrame = new JFrame("All Panels");
-
+                
+                allPanelsFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 allPanelsFrame.add(allpanels, BorderLayout.CENTER);
                 allPanelsFrame.setSize(675, 400);
                 allPanelsFrame.setResizable(false);

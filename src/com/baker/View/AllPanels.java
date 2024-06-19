@@ -495,8 +495,11 @@ public class AllPanels extends javax.swing.JPanel {
         if (checkboxInstallDistantHorizons.isSelected()) {
             horizonsUrl = rget.getDownloadLink(domain + "/api/minecraft/getdistanthorizons.php", parametersDownload);
         }
-
-        configUrl = rget.getDownloadLink(domain + "/api/minecraft/getconfigs.php", parametersDownload);
+        
+        if(checkboxInstallFancy.isSelected()){
+            configUrl = rget.getDownloadLink(domain + "/api/minecraft/getconfigs.php", parametersDownload);
+        }
+        
 
         DownloadWorker worker = new DownloadWorker(
                 modsUrl,
@@ -514,7 +517,7 @@ public class AllPanels extends javax.swing.JPanel {
         );
 
         worker.setInstallMods(checkboxInstallMods.isSelected());
-        worker.setRemovelZip(false);
+        worker.setRemovelZip(true);
         worker.execute();
 
     }//GEN-LAST:event_downloadButtonMousePressed
