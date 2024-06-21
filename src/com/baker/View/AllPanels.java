@@ -9,11 +9,12 @@ import com.baker.simpleExceptions.SimpleException;
 import com.baker.utils.DownloadWorker;
 import com.baker.utils.HardwareInfoGetter;
 import com.baker.utils.Popups;
+import com.baker.utils.TextUpdater;
 import com.baker.utils.ZipManager;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.Map;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -24,13 +25,14 @@ public class AllPanels extends javax.swing.JPanel {
 
     private int mouseX, mouseY;
     private RequestGet rget = new RequestGet();
+    
     //Web
     public static final String domain = "https://btools.me";
     public static final String apikey = "API-EpVsPsKvqYhhcGKEeSNnWrZ1N5loZWlVK9iuumEP6wYsFBUUq6Ql";
     //Local
     //public static final String domain = "http://127.0.0.1";
     //public static String apikey = "API-gDjlVTn76N2ZpbaE8yuoVSgoOwGnXCHJJa7vMQOp";
-    Popups popup = new Popups();
+    private Popups popup ;
     HardwareInfoGetter hardware = new HardwareInfoGetter();
 
     /**
@@ -41,10 +43,13 @@ public class AllPanels extends javax.swing.JPanel {
      * @throws com.baker.simpleExceptions.SimpleException
      */
     public AllPanels() {
-
+        popup = new Popups();
+        
+        
         initComponents();
         setDefaultInfo();
-        Popups popup = new Popups();
+       
+        
 
         //START VARIABLES
         statesVariables();
@@ -343,11 +348,8 @@ public class AllPanels extends javax.swing.JPanel {
                             .addComponent(titleShaders))
                         .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(separator7, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modsPanelLayout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(separator5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(separator6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(separator5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(separator6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(modsPanelLayout.createSequentialGroup()
                         .addComponent(separator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -355,12 +357,9 @@ public class AllPanels extends javax.swing.JPanel {
                         .addGap(0, 0, 0)
                         .addComponent(checkboxInstallMods)))
                 .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(modsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(checkboxInstallFancy)
-                        .addComponent(checkboxInstallDistantHorizons))
-                    .addGroup(modsPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(checkboxInstallShaders)))
+                    .addComponent(checkboxInstallFancy)
+                    .addComponent(checkboxInstallDistantHorizons)
+                    .addComponent(checkboxInstallShaders))
                 .addGap(10, 10, 10)
                 .addComponent(titleShaders1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -511,48 +510,46 @@ public class AllPanels extends javax.swing.JPanel {
     }
 
     private void actualizeTamanyo() {
-        long totalBytes = 0;
-
-        Map<String, String> parametersSize = Map.of(
-                "apikey", apikey,
-                "getfilesize", "pleasegivemethefilesize"
-        );
-
-        if (checkboxInstallMods.isSelected()) {
-            long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
-            totalBytes += byteTamaño;
-        }
-
-        if (checkboxInstallShaders.isSelected()) {
-            long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getshaders.php", parametersSize);
-            totalBytes += byteTamaño;
-        }
-
-        if (checkboxInstallDistantHorizons.isSelected()) {
-            long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getdistanthorizons.php", parametersSize);
-            totalBytes += byteTamaño;
-        }
-
-        if (checkboxInstallFancy.isSelected()) {
-            long byteTamaño = rget.getFileSize(domain + "/api/minecraft/getconfigs.php", parametersSize);
-            totalBytes += byteTamaño;
-        }
-
-        System.out.println("Total bytes: " + totalBytes);
-
-        double totalMB = totalBytes / (1024.0 * 1024.0);
-
-        if (totalMB > 1024) {
-            double totalGB = totalMB / 1024.0;
-            descargaLabel.setText("Tamaño estimado: " + Math.round(totalGB * 100.0) / 100.0 + " GB");
-        } else {
-            descargaLabel.setText("Tamaño estimado: " + Math.round(totalMB * 100.0) / 100.0 + " MB");
-        }
+        new Thread(new TextUpdater(this)).start();
     }
 
     public void enableDowloadButton() {
         downloadButton.setEnabled(true);
     }
+
+    public JCheckBox getCheckboxDecompress() {
+        return checkboxDecompress;
+    }
+
+    public JCheckBox getCheckboxDeleteTempFiles() {
+        return checkboxDeleteTempFiles;
+    }
+
+    public JCheckBox getCheckboxInstallDistantHorizons() {
+        return checkboxInstallDistantHorizons;
+    }
+
+    public JCheckBox getCheckboxInstallFancy() {
+        return checkboxInstallFancy;
+    }
+
+    public JCheckBox getCheckboxInstallMods() {
+        return checkboxInstallMods;
+    }
+
+    public JCheckBox getCheckboxInstallShaders() {
+        return checkboxInstallShaders;
+    }
+    
+    public JLabel getDescargaLabel(){
+        return descargaLabel;
+    }
+    
+    public RequestGet getRget() {
+        return rget;
+    }
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

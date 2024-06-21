@@ -135,13 +135,8 @@
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="separator7" min="-2" pref="7" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="separator5" alignment="1" min="-2" pref="7" max="-2" attributes="0"/>
-                                      <Component id="separator6" alignment="1" min="-2" pref="7" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="separator5" alignment="1" min="-2" pref="7" max="-2" attributes="0"/>
+                              <Component id="separator6" alignment="1" min="-2" pref="7" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -153,14 +148,9 @@
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="checkboxInstallFancy" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="checkboxInstallDistantHorizons" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="checkboxInstallShaders" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="checkboxInstallFancy" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkboxInstallDistantHorizons" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkboxInstallShaders" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="titleShaders1" min="-2" max="-2" attributes="0"/>
