@@ -1,24 +1,52 @@
-<project name="FriendsVsFriends-SaveEditor" default="default" basedir=".">
-    <description>Builds, tests, and runs the project FriendsVsFriends-SaveEditor.</description>
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Minecraft-Mod-Installer" default="dist" basedir=".">
     
-    <!-- Define propiedades -->
-    <property name="main.class" value="com.tu.paquete.TuClasePrincipal"/>
-    <property name="jar.file" value="dist/NombreDeTuApp.jar"/>
-
-    <!-- Configuración para crear el JAR -->
-    <target name="jar" depends="compile">
-        <jar destfile="${jar.file}" basedir="build/classes">
-            <!-- Incluye los archivos necesarios en el JAR -->
-            <fileset dir="ruta/a/tu/codigo" includes="**/*.class"/>
-            <fileset dir="ruta/a/tus/recursos" includes="**/*"/>
-            
-            <!-- Especifica la clase principal del JAR -->
+    <description>Builds, tests, and runs the project Minecraft-Mod-Installer.</description>
+    
+    <!-- Propiedades -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="main.class" value="com.baker.Main"/> <!-- Reemplaza con tu clase principal -->
+    
+    <!-- Importa el archivo de configuración de NetBeans -->
+    <import file="nbproject/build-impl.xml"/>
+    
+    <!-- Tarea para compilar -->
+    <target name="compile" depends="init">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}">
+            <classpath>
+                <fileset dir="lib">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+    
+    <!-- Tarea para empaquetar en un JAR -->
+    <target name="dist" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/Minecraft-Mod-Installer.jar" basedir="${build.dir}">
             <manifest>
                 <attribute name="Main-Class" value="${main.class}"/>
             </manifest>
+            <fileset dir="${src.dir}">
+                <include name="**/*.java"/>
+            </fileset>
+            <zipgroupfileset dir="lib" includes="*.jar"/>
         </jar>
     </target>
     
-    <!-- Otras configuraciones y tareas -->
-
+    <!-- Tarea para inicializar el directorio de compilación -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+    </target>
+    
+    <!-- Tarea para limpiar el proyecto -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+    
 </project>
