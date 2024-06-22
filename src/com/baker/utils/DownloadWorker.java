@@ -50,6 +50,8 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     private String downloadShader;
     private String downloadConfig;
     private String downloadHorizont;
+    private String downloadLauncher;
+    private String downloadFabric;
 
     private String downloadPath;
     private JLabel speedLabel;
@@ -62,6 +64,8 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
 
     private boolean removeZip;
     private boolean intallMods;
+    private boolean canDownloadSklauncher;
+    private boolean canDownloadFabric;
 
     public DownloadWorker(String downloadMods, String downloadShader, String downloadConfig, String downloadHorizont, String downloadPath, JLabel speedLabel, JLabel etaLabel, long totalFileSize, ZipManager zipManager, String destDirectory, JButton finalButton, JLabel informativeLabel) {
         this.downloadMods = downloadMods;
@@ -69,6 +73,9 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
         this.downloadConfig = downloadConfig;
         this.downloadHorizont = downloadHorizont;
         this.downloadPath = downloadPath;
+        this.downloadLauncher = "https://skmedix.pl/binaries/skl/3.2.8/SKlauncher-3.2.8.jar";
+        this.downloadFabric = "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar";
+       
         this.speedLabel = speedLabel;
         this.etaLabel = etaLabel;
         this.totalFileSize = totalFileSize;
@@ -78,12 +85,26 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
         this.informativeLabel = informativeLabel;
         this.removeZip = false;
         this.intallMods = false;
+        this.canDownloadSklauncher = false;
+        this.canDownloadFabric = false;
     }
 
     @Override
     protected Void doInBackground() throws Exception {
 
         try {
+            
+            if(canDownloadSklauncher){
+                informativeLabel.setText("Descargando Laucher");
+                downloadFiles(downloadLauncher, "Sklaucher.jar");
+                copyLauncher();
+                
+            }
+            if(canDownloadFabric){
+                informativeLabel.setText("Descargando Fabric");
+                downloadFiles(downloadFabric, "Fabric.jar");
+                executeFabric();
+            }
 
             if (downloadMods != null) {
                 informativeLabel.setText("Descargando Mods");
@@ -295,7 +316,46 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
         }
 
     }
+    
+    private void copyLauncher() throws IOException{
+        System.out.println("Entro");
+        String launcherFilePath = downloadPath + "Sklaucher.jar";
+        File launcherFile = new File(launcherFilePath);
 
+        String desktopPath = System.getProperty("user.home") + File.separator+ "Desktop";
+        File desktopDir = new File(desktopPath);
+        
+        System.out.println(launcherFile.getPath());
+        System.out.println(desktopDir);
+        
+        if(launcherFile.exists()){
+            File newFile = new File(desktopDir, launcherFile.getName());
+
+            // Intentar mover el archivo usando renameTo
+            if (launcherFile.renameTo(newFile)) {
+                System.out.println("Archivo movido exitosamente a " + newFile.getAbsolutePath());
+            } else {
+                System.err.println("No se pudo mover el archivo a " + newFile.getAbsolutePath());
+            }
+        }
+
+        System.out.println("Salgo");
+    }
+    
+    private void executeFabric() throws IOException, InterruptedException{
+        ProcessBuilder pb = new ProcessBuilder("java", "-jar", downloadPath + "Fabric.jar");
+        Process proces = pb.start();
+        
+        proces.waitFor();
+               
+        if(removeZip){
+            new File(downloadPath + "Fabric.jar").delete();
+            System.out.println("Frabric.jar deleted");
+        }
+        
+        System.out.println("Fabric Installed");
+    }
+    
     public void setInstallMods(boolean x) {
         this.intallMods = x;
     }
@@ -303,6 +363,16 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     public void setRemovelZip(boolean x) {
         this.removeZip = x;
     }
+
+    public void setCanDownloadSklauncher(boolean canDownloadSklauncher) {
+        this.canDownloadSklauncher = canDownloadSklauncher;
+    }
+
+    public void setCanDownloadFabric(boolean canDownloadFabric) {
+        this.canDownloadFabric = canDownloadFabric;
+    }
+    
+    
 
     private void reenableButton() {
         if (finalButton != null) {
