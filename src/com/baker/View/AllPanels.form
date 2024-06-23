@@ -46,74 +46,69 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="titleMods" min="-2" pref="176" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
                               <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="titleShaders1" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="separator11" min="-2" pref="176" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="titleMods" min="-2" pref="176" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="checkboxDecompress" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="separator2" max="32767" attributes="0"/>
-                                      <Component id="checkboxInstallMods" max="32767" attributes="0"/>
-                                      <Component id="checkboxDeleteTempFiles" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="titleShaders1" alignment="0" max="32767" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="separator11" min="-2" pref="176" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="checkboxDecompress" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="separator2" max="32767" attributes="0"/>
+                                              <Component id="checkboxInstallMods" max="32767" attributes="0"/>
+                                              <Component id="checkboxDeleteTempFiles" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
+                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="checkboxInstallSklauncher" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="titleConfigs" alignment="1" max="32767" attributes="0"/>
+                              <Component id="separator4" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="titleConfigs" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="separator4" max="32767" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="etaLabel" min="-2" pref="131" max="-2" attributes="0"/>
-                                              <Component id="speedLabel" min="-2" pref="143" max="-2" attributes="0"/>
-                                              <Component id="descargaLabel" min="-2" pref="178" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="titleShaders" max="32767" attributes="0"/>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="checkboxInstallShaders" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="separator6" min="-2" pref="150" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="separator5" min="-2" pref="150" max="-2" attributes="0"/>
-                                                  <Component id="titleDistantHorizons" min="-2" pref="150" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="checkboxInstallDistantHorizons" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="titleFancymenu" alignment="1" min="-2" pref="126" max="-2" attributes="0"/>
-                                              <Component id="separator7" alignment="1" min="-2" pref="126" max="-2" attributes="0"/>
-                                              <Component id="checkboxInstallFancy" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Component id="etaLabel" min="-2" pref="131" max="-2" attributes="0"/>
+                                      <Component id="speedLabel" min="-2" pref="143" max="-2" attributes="0"/>
+                                      <Component id="descargaLabel" min="-2" pref="178" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="titleShaders" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="checkboxInstallShaders" min="-2" max="-2" attributes="0"/>
+                                          <Component id="separator6" min="-2" pref="150" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="checkboxInstallSklauncher" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="checkboxInstallFabric" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="separator5" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <Component id="titleDistantHorizons" min="-2" pref="150" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="checkboxInstallDistantHorizons" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="titleFancymenu" alignment="1" min="-2" pref="126" max="-2" attributes="0"/>
+                                      <Component id="separator7" alignment="1" min="-2" pref="126" max="-2" attributes="0"/>
+                                      <Component id="checkboxInstallFancy" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -121,71 +116,73 @@
                   </Group>
                   <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="checkboxInstallFabric" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="titleAll" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="separator1" min="-2" max="-2" attributes="0"/>
+                  <Component id="titleAll" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Component id="separator1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="titleMods" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="titleConfigs" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="separator4" min="-2" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="titleMods" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="titleConfigs" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="separator4" min="-2" pref="16" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="titleDistantHorizons" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="titleFancymenu" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="titleShaders" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="separator7" min="-2" pref="7" max="-2" attributes="0"/>
-                                      <Component id="separator5" alignment="1" min="-2" pref="7" max="-2" attributes="0"/>
-                                      <Component id="separator6" alignment="1" min="-2" pref="7" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="separator2" min="-2" pref="9" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="checkboxDecompress" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="checkboxInstallMods" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="titleDistantHorizons" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="titleFancymenu" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="titleShaders" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="checkboxInstallFancy" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="checkboxInstallDistantHorizons" min="-2" max="-2" attributes="0"/>
-                              <Component id="checkboxInstallShaders" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="separator7" min="-2" pref="7" max="-2" attributes="0"/>
+                              <Component id="separator5" alignment="1" min="-2" pref="7" max="-2" attributes="0"/>
+                              <Component id="separator6" alignment="1" min="-2" pref="7" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Component id="titleShaders1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="separator11" min="-2" pref="7" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="checkboxInstallFabric" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="checkboxInstallSklauncher" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="separator2" min="-2" pref="9" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="checkboxDecompress" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="checkboxInstallMods" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="checkboxInstallFancy" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkboxInstallDistantHorizons" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkboxInstallShaders" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Component id="titleShaders1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="separator11" min="-2" pref="7" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="checkboxDeleteTempFiles" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
-                  <Component id="descargaLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="checkboxInstallFabric" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="descargaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkboxInstallSklauncher" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="speedLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="etaLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Component id="downloadButton" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
