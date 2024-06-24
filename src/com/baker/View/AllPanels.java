@@ -68,7 +68,7 @@ public class AllPanels extends javax.swing.JPanel {
         
 
         System.out.println("Started!");
-        popup.youtubePopup("Recuerda!", "Recuerda que puedes ver un tutorial para saber como instalar los mods.\nPresiona el botón \"Ver Tutorial\" para verlo.", "https://www.youtube.com/watch?v=Jln_PDI6uts");
+        popup.youtubePopup("Recuerda!", "Recuerda que puedes ver un tutorial para saber como instalar los mods.\nPresiona el botón \"Ver Tutorial\" para verlo.", "https://www.youtube.com/watch?v=m2rFGJlTnXE");
 
     }
 

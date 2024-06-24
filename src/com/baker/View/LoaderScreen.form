@@ -109,7 +109,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="versionText">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver: 1.9.1"/>
+            <Property name="text" type="java.lang.String" value="Ver: 1.9.2"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="infoLabel">

@@ -92,7 +92,7 @@ public class LoaderScreen extends javax.swing.JFrame {
 
         separator.setForeground(new java.awt.Color(155, 216, 184));
 
-        versionText.setText("Ver: 1.9.1");
+        versionText.setText("Ver: 1.9.2");
 
         infoLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
