@@ -450,8 +450,6 @@ public class AllPanels extends javax.swing.JPanel {
                 "link", "pleasegivemethedownloadlink"
         );
 
-        Long totalSize = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
-
         String modsUrl = null, shaderUrl = null, configUrl = null, horizonsUrl = null;
 
         if (checkboxInstallMods.isSelected()) {
@@ -479,11 +477,11 @@ public class AllPanels extends javax.swing.JPanel {
                 zipFilePath,
                 speedLabel,
                 etaLabel,
-                totalSize,
                 zipmanager,
                 destDirectory,
                 downloadButton,
-                descargaLabel
+                descargaLabel,
+                domain
         );
 
         worker.setInstallMods(checkboxInstallMods.isSelected());

@@ -23,6 +23,8 @@
  */
 package com.baker.utils;
 
+import com.baker.Requests.RequestGet;
+import static com.baker.View.AllPanels.apikey;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,6 +36,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -52,22 +55,23 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     private String downloadHorizont;
     private String downloadLauncher;
     private String downloadFabric;
+    private String domain;
 
     private String downloadPath;
     private JLabel speedLabel;
     private JLabel etaLabel;
-    private long totalFileSize;
     private ZipManager zipManager;
     private String destDirectory;
     private JButton finalButton;
     private JLabel informativeLabel;
+    private RequestGet rget;
 
     private boolean removeZip;
     private boolean intallMods;
     private boolean canDownloadSklauncher;
     private boolean canDownloadFabric;
 
-    public DownloadWorker(String downloadMods, String downloadShader, String downloadConfig, String downloadHorizont, String downloadPath, JLabel speedLabel, JLabel etaLabel, long totalFileSize, ZipManager zipManager, String destDirectory, JButton finalButton, JLabel informativeLabel) {
+    public DownloadWorker(String downloadMods, String downloadShader, String downloadConfig, String downloadHorizont, String downloadPath, JLabel speedLabel, JLabel etaLabel, ZipManager zipManager, String destDirectory, JButton finalButton, JLabel informativeLabel, String domain) {
         this.downloadMods = downloadMods;
         this.downloadShader = downloadShader;
         this.downloadConfig = downloadConfig;
@@ -78,11 +82,13 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
        
         this.speedLabel = speedLabel;
         this.etaLabel = etaLabel;
-        this.totalFileSize = totalFileSize;
         this.zipManager = zipManager;
         this.destDirectory = destDirectory;
         this.finalButton = finalButton;
         this.informativeLabel = informativeLabel;
+        this.domain = domain;
+        this.rget = new RequestGet();
+        
         this.removeZip = false;
         this.intallMods = false;
         this.canDownloadSklauncher = false;
@@ -93,22 +99,31 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
     protected Void doInBackground() throws Exception {
 
         try {
+            long totalSize;
+            
+            Map<String, String> parametersSize = Map.of(
+                "apikey", apikey,
+                "getfilesize", "pleasegivemethefilesize"
+            );
             
             if(canDownloadSklauncher){
                 informativeLabel.setText("Descargando Laucher");
-                downloadFiles(downloadLauncher, "Sklaucher.jar");
+                totalSize = 2;
+                downloadFiles(downloadLauncher, "Sklaucher.jar",totalSize);
                 copyLauncher();
                 
             }
             if(canDownloadFabric){
                 informativeLabel.setText("Descargando Fabric");
-                downloadFiles(downloadFabric, "Fabric.jar");
+                totalSize = 2;
+                downloadFiles(downloadFabric, "Fabric.jar",totalSize);
                 executeFabric();
             }
 
             if (downloadMods != null) {
                 informativeLabel.setText("Descargando Mods");
-                downloadFiles(downloadMods, "mods.zip");
+                totalSize = rget.getFileSize(domain + "/api/minecraft/getmods.php", parametersSize);
+                downloadFiles(downloadMods, "mods.zip",totalSize);
                 if (intallMods) {
                     installMods();
                 }
@@ -116,19 +131,22 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
 
             if (downloadShader != null) {
                 informativeLabel.setText("Descargando Shaders");
-                downloadFiles(downloadShader, "shaders.zip");
+                totalSize = rget.getFileSize(domain + "/api/minecraft/getshaders.php", parametersSize);
+                downloadFiles(downloadShader, "shaders.zip",totalSize);
                 installShaders();
             }
 
             if (downloadConfig != null) {
                 informativeLabel.setText("Descargando Configuraciones");
-                downloadFiles(downloadConfig, "Config.zip");
+                totalSize = rget.getFileSize(domain + "/api/minecraft/getconfigs.php", parametersSize);
+                downloadFiles(downloadConfig, "Config.zip",totalSize);
                 intallConfig();
             }
 
             if (downloadHorizont != null) {
                 informativeLabel.setText("Descargando Horizon");
-                downloadFiles(downloadHorizont, "Horizon.zip");
+                totalSize = rget.getFileSize(domain + "/api/minecraft/getdistanthorizons.php", parametersSize);
+                downloadFiles(downloadHorizont, "Horizon.zip",totalSize);
                 installHorizont();
             }
 
@@ -241,7 +259,7 @@ public class DownloadWorker extends SwingWorker<Void, Void> {
 
     }
 
-    private void downloadFiles(String downloadUrl, String nameFile) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
+    private void downloadFiles(String downloadUrl, String nameFile, long totalFileSize) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
 
         // Crear objeto URL a partir del string downloadUrl
         URL url = new URL(downloadUrl);
